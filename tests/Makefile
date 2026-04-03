@@ -1,6 +1,6 @@
 NAME	= run
 CC		= cc
-CFLAGS	= -Wextra -Wall -Werror -I../inc -I../libunit/inc -I../libft/inc
+CFLAGS	= -Wextra -Wall -Werror -I../inc -I../libunit/inc -I../libft/inc -g
 
 SRCS	= test_parser.c
 OBJS	= $(SRCS:.c=.o)
@@ -20,7 +20,7 @@ $(NAME): $(OBJS) $(PS_LIB) $(UNIT_LIB) $(FT_LIB)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(PS_LIB): FORCE
-	@$(MAKE) -C ../ lib
+	@$(MAKE) USE_GDB=1 -C ../ lib
 
 $(UNIT_LIB): FORCE
 	@$(MAKE) -C ../libunit

@@ -1,7 +1,7 @@
 NAME	= push_swap
 LIB_NAME = libpushswap.a
 CC		= cc
-CFLAGS	= -Wextra -Wall -Werror -I./inc
+CFLAGS	= -Wextra -Wall -Werror -I./inc -I./libft/inc
 
 SRC_DIR	= src/
 CORE_SRCS = $(addprefix $(SRC_DIR), parser/input_validate.c)
