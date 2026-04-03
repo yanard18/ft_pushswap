@@ -1,25 +1,27 @@
-CC           = cc
-CFLAGS       = -Wextra -Wall -Werror -Wno-format
-INCLUDES     = -I./inc
+NAME		= libunit.a
+CC			= cc
+CFLAGS		= -Wextra -Wall -Werror -Wno-format -I./inc
 
-MAKE         = make
-NAME         = run
-SRCS         = unit.c test_basic.c
-HEADERS      = unit.h
+MAKE		= make
+SRCS		= unit.c
+OBJS		= $(SRCS:.c=.o)
+HEADERS		= unit.h
 
 all: $(NAME)
-	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME)
 
-$(NAME): $(SRCS)
-	$(CC) $(CFLAGS) $(INCLUDES) $(SRCS) -o $(NAME)
+$(NAME): $(OBJS)
+	ar rcs $(NAME) $(OBJS)
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(NAME)
+	rm -f $(OBJS)
 
 fclean: clean
-	make fclean -C $(FTPRINTF_DIR)
+	rm -f $(NAME)
 
-FORCE:
+re: fclean all
 
 .PHONY: all clean fclean FORCE
 
