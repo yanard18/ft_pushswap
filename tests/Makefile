@@ -11,6 +11,9 @@ FT_LIB      = ../libft/libft.a
 
 all: $(NAME)
 
+test: $(NAME)
+	valgrind ./run
+
 $(NAME): $(OBJS) $(PS_LIB) $(UNIT_LIB) $(FT_LIB)
 	$(CC) $(CFLAGS) $(OBJS) -L.. -lpushswap -L../libunit -lunit -L../libft -lft -o $(NAME)
 
@@ -27,7 +30,7 @@ $(FT_LIB): FORCE
 	@$(MAKE) -C ../libft
 
 clean:
-	rm -f $(OJBS)
+	rm -f $(OBJS)
 
 fclean: clean
 	rm -f $(NAME)

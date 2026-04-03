@@ -1,7 +1,9 @@
 #include "pushswap.h"
 
-int	is_input_valid(char **argv)
+int	is_input_valid(int argc, char **argv)
 {
 	(void)argv;
-	return (0);
+	if (argc <= 1)
+		return (0);
+	return (1);
 }
