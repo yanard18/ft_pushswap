@@ -1,17 +1,18 @@
 NAME	= run
 CC		= cc
-CFLAGS	= -Wextra -Wall -Werror -I../inc -I../libunit/inc
+CFLAGS	= -Wextra -Wall -Werror -I../inc -I../libunit/inc -I../libft/inc
 
 SRCS	= test_parser.c
 OBJS	= $(SRCS:.c=.o)
 
 PS_LIB	= ../libpushswap.a
 UNIT_LIB	= ../libunit/libunit.a
+FT_LIB      = ../libft/libft.a
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(PS_LIB) $(UNIT_LIB)
-	$(CC) $(CFLAGS) $(OBJS) -L.. -lpushswap -L../libunit -lunit -o $(NAME)
+$(NAME): $(OBJS) $(PS_LIB) $(UNIT_LIB) $(FT_LIB)
+	$(CC) $(CFLAGS) $(OBJS) -L.. -lpushswap -L../libunit -lunit -L../libft -lft -o $(NAME)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -21,6 +22,9 @@ $(PS_LIB): FORCE
 
 $(UNIT_LIB): FORCE
 	@$(MAKE) -C ../libunit
+
+$(FT_LIB): FORCE
+	@$(MAKE) -C ../libft
 
 clean:
 	rm -f $(OJBS)
