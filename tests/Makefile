@@ -10,9 +10,8 @@ UNIT_LIB	= ../libunit/libunit.a
 FT_LIB      = ../libft/libft.a
 
 all: $(NAME)
-
-test: $(NAME)
 	valgrind ./run
+
 
 $(NAME): $(OBJS) $(PS_LIB) $(UNIT_LIB) $(FT_LIB)
 	$(CC) $(CFLAGS) $(OBJS) -L.. -lpushswap -L../libunit -lunit -L../libft -lft -o $(NAME)
