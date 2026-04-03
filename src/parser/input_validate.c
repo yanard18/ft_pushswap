@@ -21,6 +21,8 @@ static int	is_valid_flag(char *s)
 		return (1);
 	else if (ft_strncmp(s, "--adaptive", 10) == 0)
 		return (1);
+	else if (ft_strncmp(s, "--bench", 10) == 0)
+		return (1);
 	return (0);
 }
 
@@ -47,15 +49,24 @@ static int	is_valid_number(char *s)
 int	is_input_valid(int argc, char **argv)
 {
 	int		i;
+	int		has_num_seq;
 
+	has_num_seq = 0;
 	if (argc <= 1)
 		return (0);
 	i = 0;
 	while (++i < argc)
 	{
 		char *str = argv[i];
-		if (!is_valid_number(str) && !is_valid_flag(str))
+		if (is_valid_number(str))
+		{
+			has_num_seq = 1;
+			continue ;
+		}
+		else if (!is_valid_flag(str))
 			return (0);
 	}
+	if (has_num_seq == 0)
+		return (0);
 	return (1);
 }
