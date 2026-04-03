@@ -1,1 +1,6 @@
 *.pdf
+*.o
+*.a
+tags
+TAGS
+*.org
