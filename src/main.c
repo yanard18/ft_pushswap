@@ -1,7 +1,9 @@
 #include <stdio.h>
+#include "pushswap.h"
 
-int	main(void)
+int	main(int argc, char **argv)
 {
-	printf("Hello World!");
+	(void)argc;
+	printf("is valid: %d\n", is_input_valid(argv));
 	return (0);
 }
