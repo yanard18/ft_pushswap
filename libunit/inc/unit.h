@@ -27,14 +27,13 @@ void register_test(const char *name, int (*func)(void));
 		register_test(#func_ptr, func_ptr);		\
 	}											
 
-# define TEST(exp, res) do {                                                       \
+# define TEST(exp, res, msg) do {												   \
         long long _exp = (long long)(exp);                                         \
         long long _res = (long long)(res);                                         \
         if (_exp == _res) {                                                        \
             printf("  [+] %s == %s --> res: %lld\n", #exp, #res, _exp);            \
         } else {                                                                   \
-            printf(RED "  [-] %s == %s --> expected: %lld, was: %lld\n" RESET,     \
-                   #exp, #res, _exp, _res);                                        \
+            printf(RED "  [-] %s\n" RESET, msg);								   \
             return (0);                                                            \
         }                                                                          \
     } while (0)

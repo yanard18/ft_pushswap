@@ -41,7 +41,7 @@ int	main(int argc, char **argv)
 		{
 			printf(RED "KO: %s\n" RESET, g_test_lst->name);
 		}
-		if (verbose)
+		if (!test_result || verbose)
 		{
 			rewind(tmp);
 			char line[1024];

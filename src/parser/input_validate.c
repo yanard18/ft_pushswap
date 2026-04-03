@@ -3,5 +3,5 @@
 int	is_input_valid(char **argv)
 {
 	(void)argv;
-	return (1);
+	return (0);
 }
