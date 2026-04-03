@@ -11,7 +11,7 @@ typedef struct s_stack
     int capacity;
     int size;
     int start;
-    int end; 
+    int end;
 } t_stack;
 
 int	ps_atoi(const char *str);
