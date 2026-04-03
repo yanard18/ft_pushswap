@@ -42,6 +42,11 @@ int	test_input_validation()
 	TEST(__is_input_valid("./push_swap 0 one 2 3", ' '),
 		 0, "given ./push_swap 0 one 2 3, expected 0, but returned 1");
 
+	TEST(__is_input_valid("./push_swap 1a 2 3", ' '),
+		 0, "given ./push_swap 1a 2 3, expected 0, but returned 1");
+
+	TEST(__is_input_valid("./push_swap 3 2 3", ' '),
+		 0, "given ./push_swap 3 2 3 (duplicate numbers), expected 0, but returned 1");
 
 	/* === Valid Inputs === */
 

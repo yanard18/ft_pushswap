@@ -35,10 +35,15 @@ static int	is_valid_number(char *s)
 	tmp_argv = argv;
 	while (*argv)
 	{
-		if(!ft_isdigit(**argv))
+		int i = 0;
+		while ((*argv)[i])
 		{
-			free_argv(tmp_argv);
-			return (0);
+			if (!ft_isdigit((*argv)[i]))
+			{
+				free_argv(tmp_argv);
+				return (0);
+			}
+			i++;
 		}
 		argv++;
 	}
