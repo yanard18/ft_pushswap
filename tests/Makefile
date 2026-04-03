@@ -10,7 +10,7 @@ UNIT_LIB	= ../libunit/libunit.a
 FT_LIB      = ../libft/libft.a
 
 all: $(NAME)
-	valgrind ./run
+	valgrind --leak-check=full ./run
 
 
 $(NAME): $(OBJS) $(PS_LIB) $(UNIT_LIB) $(FT_LIB)
