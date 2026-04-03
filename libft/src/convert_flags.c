@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   convert_flags_bonus.c                              :+:      :+:    :+:   */
+/*   convert_flags.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dyanar <dyanar@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 01:58:55 by dyanar            #+#    #+#             */
-/*   Updated: 2026/03/13 23:02:20 by dyanar           ###   ########.fr       */
+/*   Updated: 2026/04/03 11:19:54 by dyanar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf_bonus.h"
+#include "ft_printf.h"
 
 char	*add_hex_prefix(void *content, int capitalize)
 {

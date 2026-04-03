@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   token_validate_bonus.c                             :+:      :+:    :+:   */
+/*   token_validate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dyanar <dyanar@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 20:18:28 by dyanar            #+#    #+#             */
-/*   Updated: 2026/03/13 23:02:46 by dyanar           ###   ########.fr       */
+/*   Updated: 2026/04/03 11:19:04 by dyanar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf_bonus.h"
+#include "ft_printf.h"
 
 int	validate_tokens(t_list *lst)
 {
