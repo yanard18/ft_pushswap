@@ -2,13 +2,6 @@
 #include "pushswap.h"
 #include "libft.h"
 
-static		void free_argv(int argc, char **argv)
-{
-	for (int i = 0; i<argc; i++)
-		free(argv[i]);
-	free(argv);
-}
-
 static int	__is_input_valid(char *input, char delim)
 {
 		int		argc;
@@ -17,7 +10,7 @@ static int	__is_input_valid(char *input, char delim)
 		argv = ft_split(input, delim);
 		for (argc=0; argv[argc]; argc++);
 		int res = is_input_valid(argc, argv);
-		free_argv(argc, argv);
+		free_argv(argv);
 		return (res);
 }
 

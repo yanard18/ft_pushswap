@@ -1,9 +1,12 @@
 #include "pushswap.h"
 #include "libft.h"
 
-static		void free_argv(char **argv)
+void free_argv(char **argv)
 {
-	for (int i = 0; argv[i] != NULL; i++)
+	int	i;
+
+	i = -1;
+	while (argv[++i])
 		free(argv[i]);
 	free(argv);
 }
@@ -40,6 +43,7 @@ static int	is_valid_number(char *s)
 	free_argv(tmp_argv);
 	return (1);
 }
+
 int	is_input_valid(int argc, char **argv)
 {
 	int		i;
