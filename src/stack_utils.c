@@ -20,7 +20,7 @@ void	rotate(t_stack *s)
 	s->end = (s->end + 1 + s->capacity) % s->capacity;
 }
 
-void	rev_rotate(t_stack *s)
+void	rrotate(t_stack *s)
 {
 	if (s->size < 2)
 		return ;

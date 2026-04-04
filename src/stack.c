@@ -12,31 +12,26 @@
 
 #include "push_swap.h"
 
-void	init_stacks(t_stack *a, t_stack *b, int size)
+void	init_stack(t_stack *stack, int size)
 {
-	a->value = malloc(sizeof(int) * size);
-	b->value = malloc(sizeof(int) * size);
-	a->capacity = size;
-	b->capacity = size;
-	a->size = 0;
-	b->size = 0;
-	a->start = 0;
-	b->start = 0;
-	a->end = 0;
-	a->end = 0;
+	stack->value = malloc(sizeof(int) * size);
+	stack->capacity = size;
+	stack->size = 0;
+	stack->start = 0;
+	stack->end = 0;
 }
 
-void	fill_stack_a(t_stack *a, int *numbers, int size)
+void	fill_stack(t_stack *stack, int *num_buf, int size)
 {
 	int	i;
 
 	i = 0;
 	while (i < size)
 	{
-		a->value[i] = numbers[i];
+		stack->value[i] = num_buf[i];
 		i++;
 	}
-	a->size = size;
-	a->start = 0;
-	a->end = size - 1;
+	stack->size = size;
+	stack->start = 0;
+	stack->end = size - 1;
 }

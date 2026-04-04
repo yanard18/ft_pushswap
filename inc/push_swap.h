@@ -29,8 +29,8 @@ void	push(t_stack *s, int value);
 int		pop(t_stack *s);
 void	swap(t_stack *s);
 void	rotate(t_stack *s);
-void	rev_rotate(t_stack *s);
-void	init_stacks(t_stack *a, t_stack *b, int count);
-void	fill_stack_a(t_stack *a, int *valid_ints, int count);
+void	rrotate(t_stack *s);
+void	init_stack(t_stack *stack, int size);
+void	fill_stack(t_stack *stack, int *num_buf, int size);
 
 #endif
