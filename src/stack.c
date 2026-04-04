@@ -1,5 +1,20 @@
 #include "push_swap.h"
 
+void swap(t_stack *s)
+{
+    int tmp;
+    int second_index;
+
+    if (s->size < 2)
+        return ;
+    
+    second_index = (s->start + 1) % s->capacity;
+    
+    tmp = s->value[s->start];
+    s->value[s->start] = s->value[second_index];
+    s->value[second_index] = tmp;
+}
+
 void push(t_stack *s, int value)
 {
     if (s->size == 0)

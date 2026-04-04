@@ -19,5 +19,6 @@ void push(t_stack *s, int value);
 int pop(t_stack *s);
 void init_stacks(t_stack *a, t_stack *b, int count);
 void fill_stack_a(t_stack *a, int *valid_ints, int count);
+void swap(t_stack *s);
 
 #endif
