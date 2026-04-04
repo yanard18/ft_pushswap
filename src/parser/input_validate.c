@@ -1,5 +1,6 @@
 #include "pushswap.h"
 #include "libft.h"
+#include <limits.h>
 
 void free_argv(char **argv)
 {
@@ -26,6 +27,35 @@ static int	is_valid_flag(char *s)
 	return (0);
 }
 
+static int	is_long(const char *nptr)
+{
+	long	i;
+	long		result;
+	int		sign;
+
+	i = 0;
+	result = 0;
+	sign = 1;
+	while (nptr[i] == ' ' || (nptr[i] >= 9 && nptr[i] <= 13))
+		i++;
+	if (nptr[i] == '+' || nptr[i] == '-')
+	{
+		if (nptr[i] == '-')
+			sign = -1;
+		i++;
+	}
+	while (nptr[i] >= '0' && nptr[i] <= '9')
+	{
+		result = result * 10 + (nptr[i] - '0');
+		if (result * sign > INT_MAX)
+			return (1);
+		else if (result * sign < INT_MIN)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 static int	is_valid_number(char *s)
 {
 	char	**argv;
@@ -35,7 +65,14 @@ static int	is_valid_number(char *s)
 	tmp_argv = argv;
 	while (*argv)
 	{
+		if (is_long(*argv))
+		{
+			free_argv(tmp_argv);
+			return (0);
+		}
 		int i = 0;
+		if ((*argv)[i] == '-' || (*argv)[i] == '+')
+			i++;
 		while ((*argv)[i])
 		{
 			if (!ft_isdigit((*argv)[i]))
