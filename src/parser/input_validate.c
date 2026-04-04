@@ -30,7 +30,7 @@ static int	is_valid_flag(char *s)
 static int	is_long(const char *nptr)
 {
 	long	i;
-	long		result;
+	long	result;
 	int		sign;
 
 	i = 0;
@@ -109,4 +109,47 @@ int	is_input_valid(int argc, char **argv)
 			return (0);
 	}
 	return (has_num_seq);
+}
+
+static void push_nbrs(t_list **lst, char *s)
+{
+    char **argv;
+    int  i;
+
+    argv = ft_split(s, ' ');
+    if (!argv)
+        return ;
+    i = 0;
+    while (argv[i])
+    {
+        int *n = malloc(sizeof(int));
+        if (!n)
+        {
+            ft_lstclear(lst, free);
+            free_argv(argv);
+            return ;
+        }
+        *n = ft_atoi(argv[i]);
+        ft_lstadd_back(lst, ft_lstnew(n)); 
+        i++;
+    }
+    free_argv(argv); 
+}
+
+t_ctx	*parse(int argc, char **argv)
+{
+	t_ctx	*ctx;
+	
+	(void)argc;
+
+	ctx = malloc(sizeof(t_ctx));
+	if (!ctx)
+		return (NULL);
+	ctx->num_lst = NULL;
+	while (*++argv)
+	{
+		if (ft_isdigit(**argv) || **argv == '-' || **argv == '+')
+			push_nbrs(&ctx->num_lst, *argv);
+	}
+	return (ctx);
 }

@@ -27,6 +27,12 @@ void register_test(const char *name, int (*func)(void));
 		register_test(#func_ptr, func_ptr);		\
 	}											
 
+# define TEXT(...) ({ \
+    static char _text_buf[BUFFER_SIZE]; \
+    snprintf(_text_buf, BUFFER_SIZE, __VA_ARGS__); \
+    _text_buf; \
+})
+
 # define TEST(exp, res, msg) do {												   \
         long long _exp = (long long)(exp);                                         \
         long long _res = (long long)(res);                                         \

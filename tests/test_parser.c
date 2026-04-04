@@ -1,6 +1,14 @@
 #include "unit.h"
 #include "pushswap.h"
 
+/*
+static void	__free_lst(void *content)
+{
+	(void)content;
+}
+*/
+
+
 static int	__is_input_valid(char *input, char delim)
 {
 		int		argc;
@@ -14,6 +22,7 @@ static int	__is_input_valid(char *input, char delim)
 		free_argv(argv);
 		return (res);
 }
+
 
 int	test_input_validation()
 {
@@ -109,9 +118,27 @@ int	test_input_validation()
 
 int	test_input_parse()
 {
+	{
+		int		argc;
+		char	**argv;
 
+		argv = ft_split("./push_swap 1 2 3", ' ');
+		for (argc=0; argv[argc]; argc++);
+
+		t_ctx *ctx = parse(argc, argv);
+		int n1 = *(int *)(ctx->num_lst->content);
+		int n2 = *(int *)(ctx->num_lst->next->content);
+		int n3 = *(int *)(ctx->num_lst->next->next->content);
+		free_argv(argv);
+		ft_lstclear(&ctx->num_lst, free);
+		free(ctx);
+		TEST(n1, 1, "for num_lst[0] != 1");
+		TEST(n2, 2, "for num_lst[1] != 2");
+		TEST(n3, 3, "for num_lst[2] != 3");
+	}
 
 	return (1);
 }
 
 REGISTER_TEST(test_input_validation);
+REGISTER_TEST(test_input_parse);
