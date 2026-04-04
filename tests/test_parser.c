@@ -7,6 +7,8 @@ static int	__is_input_valid(char *input, char delim)
 		int		argc;
 		char	**argv;
 
+		if (input == NULL)
+			return (is_input_valid(0, NULL));
 		argv = ft_split(input, delim);
 		for (argc=0; argv[argc]; argc++);
 		int res = is_input_valid(argc, argv);
@@ -47,6 +49,9 @@ int	test_input_validation()
 
 	TEST(__is_input_valid("./push_swap 0 --simple 2 3", ' '),
 		 0, "given ./push_swap 0 --simple 2 3, expected 0, but returned 1");
+
+	TEST(__is_input_valid(NULL, ' '),
+		 0, "given (NULL) str expected 0, but returned 1");
 
 	/*
 	TEST(__is_input_valid("./push_swap 3 2 3", ' '),

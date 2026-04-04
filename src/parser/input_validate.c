@@ -53,28 +53,23 @@ static int	is_valid_number(char *s)
 
 int	is_input_valid(int argc, char **argv)
 {
-	int		i;
 	int		has_num_seq;
 	int		num_seq_end;
 
+	if (argc <= 1 && !argv)
+		return (0);
 	has_num_seq = 0;
 	num_seq_end = 0;
-	if (argc <= 1)
-		return (0);
-	i = 0;
-	while (++i < argc)
+	while (*++argv)
 	{
-		char *str = argv[i];
-		if (has_num_seq && !ft_isdigit(*str))
+		if (has_num_seq && !is_valid_number(*argv))
 			num_seq_end = 1;
-		if (is_valid_number(str))
+		if (is_valid_number(*argv))
 			has_num_seq = 1;
-		else if (!is_valid_flag(str))
+		else if (!is_valid_flag(*argv))
 			return (0);
-		if (num_seq_end && ft_isdigit(*str))
+		if (num_seq_end && ft_isdigit(**argv))
 			return (0);
 	}
-	if (has_num_seq == 0)
-		return (0);
-	return (1);
+	return (has_num_seq);
 }
