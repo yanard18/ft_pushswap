@@ -1,15 +1,19 @@
-#include "push_swap.h"
-
-void pa(t_stack *a, t_stack *b)
-{
-    pop(&b);
-    pudh(&a);
-    write(1, "pa\n", 3);
-}
+#include "../../inc/push_swap.h"
 
 void pb(t_stack *a, t_stack *b)
 {
-    pop(&a);
-    pudh(&b);
+    int x;
+
+    x = pop(a);
+    push(b, x);
     write(1, "pb\n", 3);
+}
+
+void pa(t_stack *b, t_stack *a)
+{
+    int x;
+
+    x = pop(b);
+    push(a, x);
+    write(1, "pa\n", 3);
 }
