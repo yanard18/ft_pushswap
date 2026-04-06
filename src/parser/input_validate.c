@@ -176,5 +176,14 @@ t_ctx	*parse(int argc, char **argv)
 	if (!ctx)
 		return (NULL);
 	ctx->stack = create_stack(argc, argv);
+	while (*++argv)
+	{
+		if (ft_strncmp(*argv, "--bench", 7) == 0)
+			ctx->bench = 1;
+		else
+			ctx->bench = 0;
+			
+	}
+		
 	return (ctx);
 }

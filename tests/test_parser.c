@@ -136,7 +136,7 @@ int	test_input_parse()
 	}
 
 	{
-		t_ctx *ctx = __parse("./push_swap?1 +2 -3", '?');
+		t_ctx *ctx = __parse("./push_swap?1 +2 -3 4", '?');
 		int n1 = pop(&ctx->stack);
 		int n2 = pop(&ctx->stack);
 		int n3 = pop(&ctx->stack);
@@ -144,6 +144,23 @@ int	test_input_parse()
 		TEST(n1, 1, TEXT("for 1st pop() expected: 1 but was: %d", n1));
 		TEST(n2, 2, TEXT("for 2nd pop() expected: 2 but was: %d", n2));
 		TEST(n3, -3, TEXT("for 3rd pop() expected: -3 but was: %d", n3));
+	}
+
+	{
+		t_ctx *ctx = __parse("./push_swap 999 --simple --bench", ' ');
+		int bench_flag = ctx->bench;
+		int n = pop(&ctx->stack);
+		stack_clear(&ctx->stack);
+		TEST(bench_flag, 1, TEXT("given --bench arg should set ctx->bench 1 but was: %d", bench_flag));
+		TEST(n, 999, TEXT("given --bench broked stack values. pop() exp: 999 but was: %d", n));
+	}
+
+	{
+		t_ctx *ctx = __parse("./push_swap 999 --simple", ' ');
+		int bench_flag = ctx->bench;
+		stack_clear(&ctx->stack);
+		TEST(bench_flag, 0, TEXT("given --bench arg should set ctx->bench 1 but was: %d", bench_flag));
+
 	}
 	return (1);
 }
