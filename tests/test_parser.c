@@ -1,14 +1,6 @@
 #include "unit.h"
 #include "pushswap.h"
 
-/*
-static void	__free_lst(void *content)
-{
-	(void)content;
-}
-*/
-
-
 static int	__is_input_valid(char *input, char delim)
 {
 		int		argc;
@@ -22,7 +14,6 @@ static int	__is_input_valid(char *input, char delim)
 		free_argv(argv);
 		return (res);
 }
-
 
 int	test_input_validation()
 {
@@ -116,25 +107,34 @@ int	test_input_validation()
 	return (1);
 }
 
+static t_ctx	*__parse(char *s)
+{
+	int		argc;
+	char	**argv;
+	t_ctx	*ctx;
+
+	argv = ft_split(s, ' ');
+	for (argc=0; argv[argc]; argc++);
+	ctx = parse(argc, argv);
+	free_argv(argv);
+	return (ctx);
+}
+
+
+
 int	test_input_parse()
 {
 	{
-		int		argc;
-		char	**argv;
-
-		argv = ft_split("./push_swap 1 2 3", ' ');
-		for (argc=0; argv[argc]; argc++);
-
-		t_ctx *ctx = parse(argc, argv);
+		t_ctx *ctx = __parse("./push_swap 1 2 3");
 		int n1 = pop(&ctx->stack);
 		int n2 = pop(&ctx->stack);
 		int n3 = pop(&ctx->stack);
-		free_argv(argv);
-		free(ctx->stack.value);
-		free(ctx);
+		//int n4 = pop(&ctx->stack);
+		stack_clear(&ctx->stack);
 		TEST(n1, 1, "for num_lst[0] != 1");
 		TEST(n2, 2, "for num_lst[1] != 2");
 		TEST(n3, 3, "for num_lst[2] != 3");
+		//TEST(n4, 0, TEXT("pop() should return 0 when empty but was %d", n4));
 	}
 
 	return (1);

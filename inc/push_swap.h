@@ -32,5 +32,6 @@ void	rotate(t_stack *s);
 void	rrotate(t_stack *s);
 void	init_stack(t_stack *stack, int size);
 void	fill_stack(t_stack *stack, int *num_buf, int size);
+void	stack_clear(t_stack *stack);
 
 #endif

@@ -35,3 +35,9 @@ void	fill_stack(t_stack *stack, int *num_buf, int size)
 	stack->start = 0;
 	stack->end = size - 1;
 }
+
+void	stack_clear(t_stack *stack)
+{
+	free(stack->value);
+	free(stack);
+}
