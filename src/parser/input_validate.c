@@ -127,6 +127,26 @@ int		get_nbrs_in_str(char *s)
 	return (argc);
 }
 
+static void	push_atoi(t_stack *stack, char *s)
+{
+	char	**argv;
+	int		argc;
+
+	argv = ft_split(s, ' ');
+	if (!argv)
+		return ;
+	argc = 0;
+	while (argv[argc])
+		argc++;
+	while (--argc >= 0)
+	{
+		push(stack, ft_atoi(argv[argc]));
+		free(argv[argc]);
+	}
+	free(argv);
+}
+
+
 t_stack		create_stack(int argc, char **argv)
 {
 	t_stack	stack;
@@ -144,7 +164,7 @@ t_stack		create_stack(int argc, char **argv)
 	init_stack(&stack, size);
 	i = argc;
 	while (--argc > 0)
-		push(&stack, ft_atoi(argv[argc]));
+		push_atoi(&stack, argv[argc]);
 	return (stack);
 }
 

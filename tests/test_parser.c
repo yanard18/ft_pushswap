@@ -107,36 +107,44 @@ int	test_input_validation()
 	return (1);
 }
 
-static t_ctx	*__parse(char *s)
+static t_ctx	*__parse(char *s, char delim)
 {
 	int		argc;
 	char	**argv;
 	t_ctx	*ctx;
 
-	argv = ft_split(s, ' ');
+	argv = ft_split(s, delim);
 	for (argc=0; argv[argc]; argc++);
 	ctx = parse(argc, argv);
 	free_argv(argv);
 	return (ctx);
 }
 
-
-
 int	test_input_parse()
 {
 	{
-		t_ctx *ctx = __parse("./push_swap 1 2 3");
+		t_ctx *ctx = __parse("./push_swap 1 2 3", ' ');
 		int n1 = pop(&ctx->stack);
 		int n2 = pop(&ctx->stack);
 		int n3 = pop(&ctx->stack);
-		//int n4 = pop(&ctx->stack);
+		// int n4 = pop(&ctx->stack);
 		stack_clear(&ctx->stack);
 		TEST(n1, 1, "for num_lst[0] != 1");
 		TEST(n2, 2, "for num_lst[1] != 2");
 		TEST(n3, 3, "for num_lst[2] != 3");
-		//TEST(n4, 0, TEXT("pop() should return 0 when empty but was %d", n4));
+		// TEST(n4, 0, TEXT("pop() should return 0 when empty but was %d", n4));
 	}
 
+	{
+		t_ctx *ctx = __parse("./push_swap?1 +2 -3", '?');
+		int n1 = pop(&ctx->stack);
+		int n2 = pop(&ctx->stack);
+		int n3 = pop(&ctx->stack);
+		stack_clear(&ctx->stack);
+		TEST(n1, 1, TEXT("for 1st pop() expected: 1 but was: %d", n1));
+		TEST(n2, 2, TEXT("for 2nd pop() expected: 2 but was: %d", n2));
+		TEST(n3, -3, TEXT("for 3rd pop() expected: -3 but was: %d", n3));
+	}
 	return (1);
 }
 
