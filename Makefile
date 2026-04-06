@@ -5,6 +5,8 @@ CFLAGS	= -Wextra -Wall -Werror -I./inc -I./libft/inc
 
 SRC_DIR	= src/
 CORE_SRCS = $(addprefix $(SRC_DIR), parser/input_validate.c \
+		parser/parser.c \
+		strategies/sort.c \
 		stack.c stack_utils.c)
 MAIN_SRC = $(addprefix $(SRC_DIR), main.c)
 SRCS	= $(CORE_SRCS) $(MAIN_SRC)
