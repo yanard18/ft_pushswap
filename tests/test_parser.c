@@ -168,6 +168,13 @@ int	test_input_parse()
 		stack_clear(&ctx->stack);
 		TEST(f, &simple_sort, "--simple flag didn't choose simple_sort()");
 	}
+
+	{
+		t_ctx *ctx = __parse("./push_swap 999", ' ');
+		void (*f)(t_stack *) = ctx->sort;
+		stack_clear(&ctx->stack);
+		TEST(f, &adaptive_sort, "no flag given should choose adaptive_sort()");
+	}
 	return (1);
 }
 

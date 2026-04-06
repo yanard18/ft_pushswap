@@ -193,6 +193,7 @@ t_ctx	*parse(int argc, char **argv)
 	if (!ctx)
 		return (NULL);
 	ctx->stack = create_stack(argc, argv);
+	ctx->sort = &adaptive_sort;
 	while (*++argv)
 	{
 		if (ft_strncmp(*argv, "--bench", 7) == 0)
@@ -201,7 +202,12 @@ t_ctx	*parse(int argc, char **argv)
 			ctx->bench = 0;
 		if (ft_strncmp(*argv, "--simple", 8) == 0)
 			ctx->sort = &simple_sort;
+		else if (ft_strncmp(*argv, "--medium", 8) == 0)
+			ctx->sort = &medium_sort;
+		else if (ft_strncmp(*argv, "--complex", 9) == 0)
+			ctx->sort = &complex_sort;
+		else if (ft_strncmp(*argv, "--adaptive", 10) == 0)
+			ctx->sort = &adaptive_sort;
 	}
-		
 	return (ctx);
 }
