@@ -6,11 +6,11 @@
 /*   By: ekablan <ekablan@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/04 21:04:24 by ekablan           #+#    #+#             */
-/*   Updated: 2026/04/04 21:06:04 by ekablan          ###   ########.fr       */
+/*   Updated: 2026/04/06 15:00:57 by ekablan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../inc/push_swap.h"
 
 void	init_stack(t_stack *stack, int size)
 {
