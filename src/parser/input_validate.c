@@ -168,6 +168,23 @@ t_stack		create_stack(int argc, char **argv)
 	return (stack);
 }
 
+void	simple_sort(t_stack *stack_a)
+{
+	(void)stack_a;
+}
+void	medium_sort(t_stack *stack_a)
+{
+	(void)stack_a;
+}
+void	complex_sort(t_stack *stack_a)
+{
+	(void)stack_a;
+}
+void	adaptive_sort(t_stack *stack_a)
+{
+	(void)stack_a;
+}
+
 t_ctx	*parse(int argc, char **argv)
 {
 	t_ctx	*ctx;
@@ -182,7 +199,8 @@ t_ctx	*parse(int argc, char **argv)
 			ctx->bench = 1;
 		else
 			ctx->bench = 0;
-			
+		if (ft_strncmp(*argv, "--simple", 8) == 0)
+			ctx->sort = &simple_sort;
 	}
 		
 	return (ctx);

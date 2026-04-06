@@ -160,7 +160,13 @@ int	test_input_parse()
 		int bench_flag = ctx->bench;
 		stack_clear(&ctx->stack);
 		TEST(bench_flag, 0, TEXT("given --bench arg should set ctx->bench 1 but was: %d", bench_flag));
+	}
 
+	{
+		t_ctx *ctx = __parse("./push_swap 999 --simple", ' ');
+		void (*f)(t_stack *) = ctx->sort;
+		stack_clear(&ctx->stack);
+		TEST(f, &simple_sort, "--simple flag didn't choose simple_sort()");
 	}
 	return (1);
 }
