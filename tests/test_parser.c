@@ -126,11 +126,11 @@ int	test_input_parse()
 		for (argc=0; argv[argc]; argc++);
 
 		t_ctx *ctx = parse(argc, argv);
-		int n1 = *(int *)(ctx->num_lst->content);
-		int n2 = *(int *)(ctx->num_lst->next->content);
-		int n3 = *(int *)(ctx->num_lst->next->next->content);
+		int n1 = pop(&ctx->stack);
+		int n2 = pop(&ctx->stack);
+		int n3 = pop(&ctx->stack);
 		free_argv(argv);
-		ft_lstclear(&ctx->num_lst, free);
+		free(ctx->stack.value);
 		free(ctx);
 		TEST(n1, 1, "for num_lst[0] != 1");
 		TEST(n2, 2, "for num_lst[1] != 2");

@@ -1,16 +1,7 @@
 #include "pushswap.h"
+#include "push_swap.h"
 #include "libft.h"
 #include <limits.h>
-
-void free_argv(char **argv)
-{
-	int	i;
-
-	i = -1;
-	while (argv[++i])
-		free(argv[i]);
-	free(argv);
-}
 
 static int	is_valid_flag(char *s)
 {
@@ -111,45 +102,59 @@ int	is_input_valid(int argc, char **argv)
 	return (has_num_seq);
 }
 
-static void push_nbrs(t_list **lst, char *s)
+void	free_argv(char **argv)
 {
-    char **argv;
-    int  i;
+	int	i;
 
-    argv = ft_split(s, ' ');
-    if (!argv)
-        return ;
-    i = 0;
-    while (argv[i])
-    {
-        int *n = malloc(sizeof(int));
-        if (!n)
-        {
-            ft_lstclear(lst, free);
-            free_argv(argv);
-            return ;
-        }
-        *n = ft_atoi(argv[i]);
-        ft_lstadd_back(lst, ft_lstnew(n)); 
-        i++;
-    }
-    free_argv(argv); 
+	i = -1;
+	while (argv[++i])
+		free(argv[i]);
+	free(argv);
+}
+
+int		get_nbrs_in_str(char *s)
+{
+	int		argc;
+	char	**argv;
+	
+	argv = ft_split(s, ' ');
+	if (!argv)
+		return (0);
+	argc = 0;
+	while (argv[argc])
+		argc++;
+	free_argv(argv);
+	return (argc);
+}
+
+t_stack		create_stack(int argc, char **argv)
+{
+	t_stack	stack;
+	int		i;
+	int		size;
+
+	size = 0;
+	i = 0;
+	
+	while (argv[++i])
+	{
+		if (ft_isdigit(argv[i][0]) || argv[i][0] == '-' || argv[i][0] == '+')
+			size += get_nbrs_in_str(argv[i]);
+	}
+	init_stack(&stack, size);
+	i = argc;
+	while (--argc > 0)
+		push(&stack, ft_atoi(argv[argc]));
+	return (stack);
 }
 
 t_ctx	*parse(int argc, char **argv)
 {
 	t_ctx	*ctx;
-	
-	(void)argc;
 
 	ctx = malloc(sizeof(t_ctx));
 	if (!ctx)
 		return (NULL);
-	ctx->num_lst = NULL;
-	while (*++argv)
-	{
-		if (ft_isdigit(**argv) || **argv == '-' || **argv == '+')
-			push_nbrs(&ctx->num_lst, *argv);
-	}
+	ctx->stack = create_stack(argc, argv);
 	return (ctx);
 }

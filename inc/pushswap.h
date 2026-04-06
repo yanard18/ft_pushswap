@@ -2,10 +2,11 @@
 # define PUSHSWAP_H
 
 # include "libft.h"
+# include "push_swap.h"
 
 typedef struct s_ctx
 {
-	t_list	*num_lst;
+	t_stack	stack;
 	void	(*sort)(t_list **);
 	int		bench;
 }	t_ctx;
