@@ -6,18 +6,34 @@
 /*   By: ekablan <ekablan@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/04 21:06:24 by ekablan           #+#    #+#             */
-/*   Updated: 2026/04/06 22:31:09 by ekablan          ###   ########.fr       */
+/*   Updated: 2026/04/08 05:35:01 by ekablan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-void	stack_rotate(t_stack *s)
+void	stack_rotate(t_stack *s, char stack)
 {
 	if (s->size < 2)
 		return ;
-	s->start = (s->start + 1 + s->size) % s->size;
-	s->end = (s->end + 1 + s->size) % s->size;
+	else
+	{
+		if (stack == 'b' && s->end == s->size - 1)
+		{
+			s->start = (s->start + 1 + s->size) % s->size;
+			s->end = (s->end + 1 - s->size) % s->size;
+		}
+		else if (stack == 'b' && s->start == s->size - 1)
+		{
+			s->start = (s->start + 1 - s->size) % s->size;
+			s->end = (s->end + 1 + s->size) % s->size;
+		}
+		else 
+		{
+			s->start = (s->start + 1 + s->size) % s->size;
+			s->end = (s->end + 1 + s->size) % s->size;
+		}
+	}
 }
 
 void	stack_rrotate(t_stack *s)
@@ -71,6 +87,7 @@ int	stack_pop(t_stack *s)
 
 	value = s->value[s->start];
 	s->size--;
+	
 	if (s->size == 0)
 	{
 		s->start = 0;
