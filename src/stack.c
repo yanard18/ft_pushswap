@@ -1,37 +1,125 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   stack.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ekablan <ekablan@student.42istanbul.com    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/04 21:04:24 by ekablan           #+#    #+#             */
-/*   Updated: 2026/04/06 15:00:57 by ekablan          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../inc/push_swap.h"
 
-void	init_stack(t_stack *stack, int size)
+void stack_push(t_stack **stack, int value)
 {
-	stack->value = malloc(sizeof(int) * size);
-	stack->capacity = size;
-	stack->size = 0;
-	stack->start = 0;
-	stack->end = 0;
+    t_stack *new_node;
+
+    new_node = malloc(sizeof(t_stack));
+    if (!new_node)
+        return;
+    new_node->value = value;
+    new_node->next = *stack;
+    *stack = new_node;
 }
 
-void	fill_stack(t_stack *stack, int *num_buf, int size)
+int stack_pop(t_stack **stack)
 {
-	int	i;
+    t_stack *temp;
+    int    val;
 
-	i = 0;
-	while (i < size)
-	{
-		stack->value[i] = num_buf[i];
-		i++;
-	}
-	stack->size = size;
-	stack->start = 0;
-	stack->end = size - 1;
+    if (!*stack || !stack)
+        return (0);
+
+    temp = *stack;
+    val = temp->value;
+    *stack = (*stack)->next;
+    free(temp);
+    return (val);
 }
+
+t_stack *stack_last(t_stack *stack)
+{
+    if (!stack)
+        return (NULL);
+    while (stack->next)
+        stack = stack->next;
+    return (stack);
+}
+
+int get_stack_size(t_stack *stack)
+{
+    int size;
+
+    size = 0;
+    while (stack != NULL)
+    {
+        size++;
+        stack = stack->next;
+    }
+    return (size);
+}
+
+int find_min_idx(t_stack *stack)
+{
+    int min_val;
+    int min_index;
+    int current_index;
+
+    if (!stack)
+        return (0);
+    min_val = stack->value;
+    min_index = 0;
+    current_index = 0;
+    while (stack != NULL)
+    {
+        if (stack->value < min_val)
+        {
+            min_val = stack->value;
+            min_index = current_index;
+        }
+        stack = stack->next;
+        current_index++;
+    }
+    return (min_index);
+}
+
+// void push(t_stack *stack, int value)
+// {
+//     t_stack *new_node;
+
+//     new_node = malloc(sizeof(t_stack));
+//     if (!new_node)
+//         return;
+//     new_node->value = value;
+//     new_node->next = stack;
+//     stack = new_node;
+// }
+
+// int pop(t_stack *stack)
+// {
+//     t_stack *temp;
+//     int    val;
+
+//     if (!stack || !stack)
+//         return (-1);
+
+//     temp = stack;
+//     val = temp->value;
+//     stack = (stack)->next;
+//     free(temp);
+//     return (val);
+// }
+
+// int main(void)
+// {
+//     t_stack *a = NULL;
+//     t_stack *b = NULL;
+    
+//     push(a, 10);
+//     push(a, 20);
+//     push(a, 25);
+
+//     int x = pop(a);
+//     push(b, x);
+
+//     while(a)
+//     {
+//         printf("stack a: %d\n", a->value);
+//         a = a->next;
+//     }
+//     while (b)
+//     {
+//         printf("stack b: %d\n", b->value);
+//         b = b->next;
+//     }
+// }
