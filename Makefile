@@ -7,7 +7,7 @@ SRC_DIR	= src/
 CORE_SRCS = $(addprefix $(SRC_DIR), parser/input_validate.c \
 		parser/parser.c \
 		strategies/sort.c \
-		stack.c stack_utils.c)
+		stack.c)
 MAIN_SRC = $(addprefix $(SRC_DIR), main.c)
 SRCS	= $(CORE_SRCS) $(MAIN_SRC)
 OBJS	= $(SRCS:.c=.o)

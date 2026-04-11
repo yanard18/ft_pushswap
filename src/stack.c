@@ -29,8 +29,8 @@ int stack_pop(t_stack **stack)
 
 void	stack_clear(t_stack *stack)
 {
-	free(stack->value);
-	free(stack);
+	(void)stack;
+	// implement later
 }
 
 t_stack *stack_last(t_stack *stack)

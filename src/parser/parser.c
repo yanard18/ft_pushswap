@@ -6,7 +6,7 @@
 /*   By: dyanar <dyanar@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 21:55:03 by dyanar            #+#    #+#             */
-/*   Updated: 2026/04/06 22:16:24 by dyanar           ###   ########.fr       */
+/*   Updated: 2026/04/11 18:34:15 by ekablan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	push_atoi(t_stack *stack, char *s)
 		argc++;
 	while (--argc >= 0)
 	{
-		push(stack, ft_atoi(argv[argc]));
+		stack_push(&stack, ft_atoi(argv[argc]));
 		free(argv[argc]);
 	}
 	free(argv);
