@@ -1,14 +1,5 @@
 #include "../inc/push_swap.h"
 
-t_stack *init_stack()
-{
-	t_stack *stack;
-
-	stack = malloc(sizeof(t_stack));
-	stack->next = NULL;
-	return (stack);
-}
-
 void stack_push(t_stack **stack, int value)
 {
     t_stack *new_node;
@@ -49,7 +40,6 @@ void	stack_clear(t_stack **stack)
 	}
 	*stack = NULL;
 }
-
 
 t_stack *stack_last(t_stack *stack)
 {
