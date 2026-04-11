@@ -6,7 +6,7 @@
 
 typedef struct s_ctx
 {
-	t_stack	stack;
+	t_stack	*stack;
 	void	(*sort)(t_stack *);
 	int		bench;
 }	t_ctx;

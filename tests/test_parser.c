@@ -124,11 +124,12 @@ int	test_input_parse()
 {
 	{
 		t_ctx *ctx = __parse("./push_swap 1 2 3", ' ');
-		int n1 = pop(&ctx->stack);
-		int n2 = pop(&ctx->stack);
-		int n3 = pop(&ctx->stack);
+		int n1 = stack_pop(&ctx->stack);
+		int n2 = stack_pop(&ctx->stack);
+		int n3 = stack_pop(&ctx->stack);
 		// int n4 = pop(&ctx->stack);
 		stack_clear(&ctx->stack);
+		free(ctx);
 		TEST(n1, 1, "for num_lst[0] != 1");
 		TEST(n2, 2, "for num_lst[1] != 2");
 		TEST(n3, 3, "for num_lst[2] != 3");
@@ -137,10 +138,11 @@ int	test_input_parse()
 
 	{
 		t_ctx *ctx = __parse("./push_swap?1 +2 -3 4", '?');
-		int n1 = pop(&ctx->stack);
-		int n2 = pop(&ctx->stack);
-		int n3 = pop(&ctx->stack);
+		int n1 = stack_pop(&ctx->stack);
+		int n2 = stack_pop(&ctx->stack);
+		int n3 = stack_pop(&ctx->stack);
 		stack_clear(&ctx->stack);
+		free(ctx);
 		TEST(n1, 1, TEXT("for 1st pop() expected: 1 but was: %d", n1));
 		TEST(n2, 2, TEXT("for 2nd pop() expected: 2 but was: %d", n2));
 		TEST(n3, -3, TEXT("for 3rd pop() expected: -3 but was: %d", n3));
@@ -149,8 +151,9 @@ int	test_input_parse()
 	{
 		t_ctx *ctx = __parse("./push_swap 999 --simple --bench", ' ');
 		int bench_flag = ctx->bench;
-		int n = pop(&ctx->stack);
+		int n = stack_pop(&ctx->stack);
 		stack_clear(&ctx->stack);
+		free(ctx);
 		TEST(bench_flag, 1, TEXT("given --bench arg should set ctx->bench 1 but was: %d", bench_flag));
 		TEST(n, 999, TEXT("given --bench broked stack values. pop() exp: 999 but was: %d", n));
 	}
@@ -159,6 +162,7 @@ int	test_input_parse()
 		t_ctx *ctx = __parse("./push_swap 999 --simple", ' ');
 		int bench_flag = ctx->bench;
 		stack_clear(&ctx->stack);
+		free(ctx);
 		TEST(bench_flag, 0, TEXT("given --bench arg should set ctx->bench 1 but was: %d", bench_flag));
 	}
 
@@ -166,6 +170,7 @@ int	test_input_parse()
 		t_ctx *ctx = __parse("./push_swap 999 --simple", ' ');
 		void (*f)(t_stack *) = ctx->sort;
 		stack_clear(&ctx->stack);
+		free(ctx);
 		TEST(f, &simple_sort, "--simple flag didn't choose simple_sort()");
 	}
 
@@ -173,6 +178,7 @@ int	test_input_parse()
 		t_ctx *ctx = __parse("./push_swap 999", ' ');
 		void (*f)(t_stack *) = ctx->sort;
 		stack_clear(&ctx->stack);
+		free(ctx);
 		TEST(f, &adaptive_sort, "no flag given should choose adaptive_sort()");
 	}
 	return (1);

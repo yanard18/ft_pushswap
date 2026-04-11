@@ -29,9 +29,9 @@ int		pop(t_stack *s);
 void	swap(t_stack *s);
 void	rotate(t_stack *s);
 void	rrotate(t_stack *s);
-void	init_stack(t_stack *stack, int size);
+t_stack	*init_stack();
 void	fill_stack(t_stack *stack, int *num_buf, int size);
-void	stack_clear(t_stack *stack);
+void	stack_clear(t_stack **stack);
 
 int	ps_atoi(const char *str);
 void stack_push(t_stack **stack, int value);

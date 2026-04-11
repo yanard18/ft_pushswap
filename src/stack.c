@@ -1,5 +1,14 @@
 #include "../inc/push_swap.h"
 
+t_stack *init_stack()
+{
+	t_stack *stack;
+
+	stack = malloc(sizeof(t_stack));
+	stack->next = NULL;
+	return (stack);
+}
+
 void stack_push(t_stack **stack, int value)
 {
     t_stack *new_node;
@@ -17,9 +26,8 @@ int stack_pop(t_stack **stack)
     t_stack *temp;
     int    val;
 
-    if (!*stack || !stack)
+	if (!stack || !*stack)
         return (0);
-
     temp = *stack;
     val = temp->value;
     *stack = (*stack)->next;
@@ -27,11 +35,21 @@ int stack_pop(t_stack **stack)
     return (val);
 }
 
-void	stack_clear(t_stack *stack)
+void	stack_clear(t_stack **stack)
 {
-	(void)stack;
-	// implement later
+	t_stack	*next;
+
+	if (!stack)
+		return ;
+	while (*stack)
+	{
+		next = (*stack)->next;
+		free(*stack);
+		*stack = next;
+	}
+	*stack = NULL;
 }
+
 
 t_stack *stack_last(t_stack *stack)
 {
