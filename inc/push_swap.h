@@ -27,7 +27,7 @@ typedef struct s_stack
 typedef struct s_ctx
 {
 	t_stack	*stack;
-	void	(*sort)(t_stack *);
+	void	(*sort)(t_stack **, t_stack **);
 	int		bench;
 }	t_ctx;
 
@@ -55,10 +55,10 @@ float calculate_disorder(t_stack *stack_a);
 int		is_input_valid(int argc, char **argv);
 t_ctx	*parse(int argc, char **argv);
 void	free_argv(char **argv);
-void	simple_sort(t_stack *stack_a);
-void	medium_sort(t_stack *stack_a);
-void	complex_sort(t_stack *stack_a);
-void	adaptive_sort(t_stack *stack_a);
+void	simple_sort(t_stack **stack_a, t_stack **stack_b);
+void	medium_sort(t_stack **stack_a, t_stack **stack_b);
+void	complex_sort(t_stack **stack_a, t_stack **stack_b);
+void	adaptive_sort(t_stack **stack_a, t_stack **stack_b);
 
 int move_counter(int increment);
 

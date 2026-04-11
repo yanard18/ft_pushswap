@@ -12,19 +12,23 @@
 
 #include "push_swap.h"
 
-void	simple_sort(t_stack *stack_a)
+void	simple_sort(t_stack **stack_a, t_stack **stack_b)
 {
 	(void)stack_a;
+	(void)stack_b;
 }
-void	medium_sort(t_stack *stack_a)
+void	medium_sort(t_stack **stack_a, t_stack **stack_b)
 {
 	(void)stack_a;
+	(void)stack_b;
 }
-void	complex_sort(t_stack *stack_a)
+void	complex_sort(t_stack **stack_a, t_stack **stack_b)
 {
 	(void)stack_a;
+	(void)stack_b;
 }
-void	adaptive_sort(t_stack *stack_a)
+void	adaptive_sort(t_stack **stack_a, t_stack **stack_b)
 {
 	(void)stack_a;
+	(void)stack_b;
 }
