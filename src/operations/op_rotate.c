@@ -1,26 +1,57 @@
 #include "../../inc/push_swap.h"
 
-void ra(t_stack *a)
+void ra(t_stack **a, int print)
 {
-    if (a->size < 2)
+    t_stack *first;
+    t_stack *last;
+
+    if (!*a || !(*a)->next)
         return ;
-    stack_rotate(a, 'a');
-    write(1, "ra\n", 3);
+
+    first = *a;
+    last = stack_last(*a);
+
+    *a = first->next;
+    first->next = NULL;
+    last->next = first;
+
+    if (print)
+        write(1, "ra\n", 3);
+    move_counter(1);
 }
 
-void rb(t_stack *b)
+void rb(t_stack **b, int print)
 {
-    if (b->size < 2)
+    t_stack *first;
+    t_stack *last;
+
+    if (!*b || !(*b)->next)
         return ;
-    stack_rotate(b, 'b');
-    write(1, "rb\n", 3);
+
+    first = *b;
+    last = stack_last(*b);
+
+    *b = first->next;
+    first->next = NULL;
+    last->next = first;
+
+    if (print)
+        write(1, "rb\n", 3);
+    move_counter(1);
 }
 
-void rr(t_stack *a, t_stack *b)
+void rr(t_stack **a, t_stack **b)
 {
-    if (a->size < 2 && b->size < 2)
+    int can_ra;
+    int can_rb;
+
+    can_ra = (a && *a && (*a)->next);
+    can_rb = (b && *b && (*b)->next);
+
+    if (!can_ra && !can_rb)
         return ;
-    stack_rotate(a, 'a');
-    stack_rotate(b, 'b');
+
+    ra(a, 0);
+    rb(b, 0);
     write(1, "rr\n", 3);
 }
