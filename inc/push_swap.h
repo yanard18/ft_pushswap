@@ -6,7 +6,7 @@
 /*   By: ekablan <ekablan@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/04 21:09:52 by ekablan           #+#    #+#             */
-/*   Updated: 2026/04/11 18:27:46 by ekablan          ###   ########.fr       */
+/*   Updated: 2026/04/11 19:29:33 by ekablan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,9 @@ typedef struct s_ctx
 	int		bench;
 }	t_ctx;
 
-
-
-int		ps_atoi(const char *str);
-void	push(t_stack *s, int value);
-int		pop(t_stack *s);
-void	swap(t_stack *s);
-void	rotate(t_stack *s);
-void	rrotate(t_stack *s);
-void	fill_stack(t_stack *stack, int *num_buf, int size);
-void	stack_clear(t_stack **stack);
-
 int	ps_atoi(const char *str);
+
+void	stack_clear(t_stack **stack);
 void stack_push(t_stack **stack, int value);
 int stack_pop(t_stack **stack);
 t_stack *stack_last(t_stack *stack);
