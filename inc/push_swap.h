@@ -16,12 +16,22 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
+#include "libft.h"
 
 typedef struct s_stack
 {
     int value;
     struct s_stack *next;
 } t_stack;
+
+typedef struct s_ctx
+{
+	t_stack	*stack;
+	void	(*sort)(t_stack *);
+	int		bench;
+}	t_ctx;
+
+
 
 int		ps_atoi(const char *str);
 void	push(t_stack *s, int value);
@@ -52,6 +62,13 @@ int find_min_idx(t_stack *stack);
 int get_stack_size(t_stack *stack);
 float calculate_disorder(t_stack *stack_a);
 
+int		is_input_valid(int argc, char **argv);
+t_ctx	*parse(int argc, char **argv);
+void	free_argv(char **argv);
+void	simple_sort(t_stack *stack_a);
+void	medium_sort(t_stack *stack_a);
+void	complex_sort(t_stack *stack_a);
+void	adaptive_sort(t_stack *stack_a);
 
 int move_counter(int increment);
 

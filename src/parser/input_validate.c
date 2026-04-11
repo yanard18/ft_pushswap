@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
 #include "push_swap.h"
-#include "libft.h"
 #include <limits.h>
 
 void	free_argv(char **argv)

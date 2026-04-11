@@ -1,5 +1,5 @@
 #include "unit.h"
-#include "pushswap.h"
+#include "push_swap.h"
 
 static int	__is_input_valid(char *input, char delim)
 {

@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "pushswap.h"
 
 static int	get_nbr_amount_in_str(char *s)
 {
