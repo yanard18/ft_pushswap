@@ -1,27 +1,30 @@
-#include "../../inc/push_swap.h"
+#include "push_swap.h"
 
 void pb(t_stack **a, t_stack **b)
 {
-    int x;
+    t_stack *node_to_move;
 
     if (!*a)
         return ;
 
-    x = stack_pop(a);
-    stack_push(b, x);
+    node_to_move = *a;
+    *a = (*a)->next;
+    node_to_move->next = *b;
+    *b = node_to_move;
     write(1, "pb\n", 3);
     move_counter(1);
 }
 
 void pa(t_stack **a, t_stack **b)
 {
-    int x;
+    t_stack *node_to_move;
 
     if (!*b)
-    return ;
-    
-    x = stack_pop(b);
-    stack_push(a, x);
+        return ;
+    node_to_move = *b;
+    *b = (*b)->next;
+    node_to_move->next = *a;
+    *a = node_to_move;
     write(1, "pa\n", 3);
     move_counter(1);
 }
