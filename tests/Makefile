@@ -12,7 +12,6 @@ FT_LIB      = ../libft/libft.a
 all: $(NAME)
 	valgrind --leak-check=full ./run
 
-
 $(NAME): $(OBJS) $(PS_LIB) $(UNIT_LIB) $(FT_LIB)
 	$(CC) $(CFLAGS) $(OBJS) -L.. -lpushswap -L../libunit -lunit -L../libft -lft -o $(NAME)
 
