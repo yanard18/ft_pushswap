@@ -21,6 +21,7 @@
 typedef struct s_stack
 {
     int value;
+	int	normalized_value;
     struct s_stack *next;
 } t_stack;
 
@@ -34,9 +35,12 @@ typedef struct s_ctx
 int	ps_atoi(const char *str);
 
 void	stack_clear(t_stack **stack);
-void stack_push(t_stack **stack, int value);
-int stack_pop(t_stack **stack);
+void 	stack_push(t_stack **stack, int value);
+int 	stack_pop(t_stack **stack);
+int 	stack_pop_normalized(t_stack **stack);
 t_stack *stack_last(t_stack *stack);
+void	stack_normalize(t_stack *stack);
+
 void pb(t_stack **a, t_stack **b);
 void pa(t_stack **a, t_stack **b);
 void sa(t_stack **a, int print);

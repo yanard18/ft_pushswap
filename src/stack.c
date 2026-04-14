@@ -26,6 +26,20 @@ int stack_pop(t_stack **stack)
     return (val);
 }
 
+int stack_pop_normalized(t_stack **stack)
+{
+    t_stack *temp;
+    int    val;
+
+	if (!stack || !*stack)
+        return (0);
+    temp = *stack;
+    val = temp->normalized_value;
+    *stack = (*stack)->next;
+    free(temp);
+    return (val);
+}
+
 void	stack_clear(t_stack **stack)
 {
 	t_stack	*next;
@@ -86,3 +100,32 @@ int find_min_idx(t_stack *stack)
     }
     return (min_index);
 }
+
+
+int		count_smaller_than(t_stack *stack, int value)
+{
+	int	count;
+
+	count = 0;
+	while (stack)
+	{
+		if (stack->value < value)
+			count++;
+		stack = stack->next;
+	}
+	return (count);
+}
+
+
+void	stack_normalize(t_stack *stack)
+{
+	t_stack *tmp_stack;
+
+	tmp_stack = stack;
+	while (tmp_stack)
+	{
+		tmp_stack->normalized_value = count_smaller_than(stack, tmp_stack->value);
+		tmp_stack = tmp_stack->next;
+	}
+}
+
