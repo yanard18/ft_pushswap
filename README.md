@@ -1,3 +1,4 @@
+```mermaid
 graph TD
     Start([Start]) --> Parser{Validate & Parse}
     Parser -- "invalid" --> Fail
@@ -19,3 +20,4 @@ graph TD
     CalculatedDisorder -- "0.2 <= disorder < 0.5" --> Medium
     CalculatedDisorder -- "disorder >= 0.5" --> Complex
     Fail([return 1])
+```
