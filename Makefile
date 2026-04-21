@@ -8,6 +8,7 @@ SRC_DIR	= src/
 CORE_SRCS = $(addprefix $(SRC_DIR), parser/input_validate.c \
 		parser/parser.c \
 		strategies/sort.c \
+		strategies/sort_adaptive.c \
 		stack.c \
 		strategies/sort_complex.c \
 		operations/op_push_swap.c \

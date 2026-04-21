@@ -84,5 +84,6 @@ void	complex_sort(t_stack **stack_a, t_stack **stack_b, t_ctx *ctx);
 void	adaptive_sort(t_stack **stack_a, t_stack **stack_b, t_ctx *ctx);
 
 void print_benchmark(t_ctx *ctx);
+void set_adaptive_string(t_ctx *ctx, float disorder);
 
 #endif
