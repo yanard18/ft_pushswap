@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void pb(t_stack **a, t_stack **b)
+void pb(t_stack **a, t_stack **b, t_ctx *ctx)
 {
     t_stack *node_to_move;
 
@@ -12,10 +12,14 @@ void pb(t_stack **a, t_stack **b)
     node_to_move->next = *b;
     *b = node_to_move;
     write(1, "pb\n", 3);
-    move_counter(1);
+    if (ctx && ctx->bench)
+    {
+        ctx->benchmark.pb++;
+        ctx->benchmark.total_ops++;
+    }
 }
 
-void pa(t_stack **a, t_stack **b)
+void pa(t_stack **a, t_stack **b, t_ctx *ctx)
 {
     t_stack *node_to_move;
 
@@ -26,10 +30,14 @@ void pa(t_stack **a, t_stack **b)
     node_to_move->next = *a;
     *a = node_to_move;
     write(1, "pa\n", 3);
-    move_counter(1);
+    if (ctx && ctx->bench)
+    {
+        ctx->benchmark.pa++;
+        ctx->benchmark.total_ops++;
+    }
 }
 
-void sa(t_stack **a, int print)
+void sa(t_stack **a, t_ctx *ctx, int print)
 {
     int tmp;
 
@@ -41,11 +49,17 @@ void sa(t_stack **a, int print)
     (*a)->next->value = tmp;
 
     if (print)
+    {
         write(1, "sa\n", 3);
-    move_counter(1);
+        if (ctx && ctx->bench)
+        {
+            ctx->benchmark.sa++;
+            ctx->benchmark.total_ops++;
+        }
+    }
 }        
 
-void sb(t_stack **b, int print)
+void sb(t_stack **b, t_ctx *ctx, int print)
 {
      int tmp;
 
@@ -57,11 +71,17 @@ void sb(t_stack **b, int print)
     (*b)->next->value = tmp;
 
     if (print)
+    {        
         write(1, "sb\n", 3);
-    move_counter(1);
+        if (ctx && ctx->bench)
+        {
+            ctx->benchmark.sb++;
+            ctx->benchmark.total_ops++;
+        }
+    }
 }
 
-void ss(t_stack **a, t_stack **b)
+void ss(t_stack **a, t_stack **b, t_ctx *ctx)
 {
     int can_swap_a;
     int can_swap_b;
@@ -72,14 +92,16 @@ void ss(t_stack **a, t_stack **b)
         can_swap_a = 1;
     if (*b && (*b)->next)
         can_swap_b = 1;
-    
     if (!can_swap_a && !can_swap_b)
         return ;
-
     if (can_swap_a)
-        sa(a, 0);
+        sa(a, ctx, 0);
     if (can_swap_b)
-        sb(b, 0);
-    
+        sb(b, ctx, 0);
+    if (ctx && ctx->bench)
+    {
+        ctx->benchmark.ss++;
+        ctx->benchmark.total_ops += 2;
+    }
     write(1, "ss\n", 3);
 }

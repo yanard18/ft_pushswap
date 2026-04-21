@@ -64,9 +64,7 @@ static int	stack_size(t_stack *stack)
 	return (size);
 }
 
-
-
-void complex_sort(t_stack **stack_a, t_stack **stack_b)
+void complex_sort(t_stack **stack_a, t_stack **stack_b, t_ctx *ctx)
 {
     int i;
     int j;
@@ -85,14 +83,14 @@ void complex_sort(t_stack **stack_a, t_stack **stack_b)
         while (j < size)
         {
             if ((((*stack_a)->normalized_value >> i) & 1) == 0)
-                pb(stack_a, stack_b);
+                pb(stack_a, stack_b, ctx);
             else
-                ra(stack_a, 1);
+                ra(stack_a, ctx, 1);
             j++;
         }
         // Empty Stack B back into Stack A
         while (*stack_b != NULL)
-            pa(stack_a, stack_b);
+            pa(stack_a, stack_b, ctx);
         i++;
     }
 	print_stack(*stack_a);

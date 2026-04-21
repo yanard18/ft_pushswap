@@ -25,11 +25,30 @@ typedef struct s_stack
     struct s_stack *next;
 } t_stack;
 
+typedef struct s_bench
+{
+	float	disorder;
+	char	*strategy;
+	int		total_ops;
+    int		sa;
+	int		sb;
+	int		ss;
+    int		pa; 
+	int		pb;
+    int		ra;
+	int		rb; 
+	int		rr;
+    int		rra; 
+	int		rrb; 
+	int		rrr;
+}   t_bench;
+
 typedef struct s_ctx
 {
 	t_stack	*stack;
-	void	(*sort)(t_stack **, t_stack **);
+	void	(*sort)(t_stack **, t_stack **, struct s_ctx *ctx);
 	int		bench;
+	t_bench benchmark;
 }	t_ctx;
 
 int	ps_atoi(const char *str);
@@ -41,17 +60,17 @@ int 	stack_pop_normalized(t_stack **stack);
 t_stack *stack_last(t_stack *stack);
 void	stack_normalize(t_stack *stack);
 
-void pb(t_stack **a, t_stack **b);
-void pa(t_stack **a, t_stack **b);
-void sa(t_stack **a, int print);
-void sb(t_stack **b, int print);
-void ss(t_stack **a, t_stack **b);
-void ra(t_stack **a, int print);
-void rb(t_stack **b, int print);
-void rr(t_stack **a, t_stack **b);
-void rra(t_stack **a, int print);
-void rrb(t_stack **b, int print);
-void rrr(t_stack **a, t_stack **b);
+void pb(t_stack **a, t_stack **b, t_ctx *ctx);
+void pa(t_stack **a, t_stack **b, t_ctx *ctx);
+void sa(t_stack **a, t_ctx *ctx, int print);
+void sb(t_stack **b, t_ctx *ctx, int print);
+void ss(t_stack **a, t_stack **b, t_ctx *ctx);
+void ra(t_stack **a, t_ctx *ctx, int print);
+void rb(t_stack **b, t_ctx *ctx, int print);
+void rr(t_stack **a, t_stack **b, t_ctx *ctx);
+void rra(t_stack **a, t_ctx *ctx, int print);
+void rrb(t_stack **b, t_ctx *ctx, int print);
+void rrr(t_stack **a, t_stack **b, t_ctx *ctx);
 int find_min_idx(t_stack *stack);
 int get_stack_size(t_stack *stack);
 float calculate_disorder(t_stack *stack_a);
@@ -59,11 +78,11 @@ float calculate_disorder(t_stack *stack_a);
 int		is_input_valid(int argc, char **argv);
 t_ctx	*parse(int argc, char **argv);
 void	free_argv(char **argv);
-void	simple_sort(t_stack **stack_a, t_stack **stack_b);
-void	medium_sort(t_stack **stack_a, t_stack **stack_b);
-void	complex_sort(t_stack **stack_a, t_stack **stack_b);
-void	adaptive_sort(t_stack **stack_a, t_stack **stack_b);
+void	simple_sort(t_stack **stack_a, t_stack **stack_b, t_ctx *ctx);
+void	medium_sort(t_stack **stack_a, t_stack **stack_b, t_ctx *ctx);
+void	complex_sort(t_stack **stack_a, t_stack **stack_b, t_ctx *ctx);
+void	adaptive_sort(t_stack **stack_a, t_stack **stack_b, t_ctx *ctx);
 
-int move_counter(int increment);
+void print_benchmark(t_ctx *ctx);
 
 #endif

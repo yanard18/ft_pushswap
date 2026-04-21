@@ -63,6 +63,34 @@ static t_stack	*create_stack(int argc, char **argv)
 	return (stack);
 }
 
+static void	set_strategy(t_ctx *ctx, char *argv)
+{
+	if (ft_strncmp(argv, "--bench", 7) == 0)
+		ctx->bench = 1;
+	// else
+	// 	ctx->bench = 0;
+	if (ft_strncmp(argv, "--simple", 8) == 0)
+	{
+		ctx->sort = &simple_sort;
+		ctx->benchmark.strategy = "Simple / O(n²)";
+	}
+	else if (ft_strncmp(argv, "--medium", 8) == 0)
+	{
+		ctx->sort = &medium_sort;
+		ctx->benchmark.strategy = "Medium / O(n√n)";
+	}
+	else if (ft_strncmp(argv, "--complex", 9) == 0)
+	{
+		ctx->sort = &complex_sort;
+		ctx->benchmark.strategy = "Complex / O(nlogn)";
+	}
+	else if (ft_strncmp(argv, "--adaptive", 10) == 0)
+	{
+		ctx->sort = &adaptive_sort;
+		// set_adaptive_strategy(ctx, calculate_disorder(ctx->stack));
+	}
+}
+
 t_ctx	*parse(int argc, char **argv)
 {
 	t_ctx	*ctx;
@@ -73,19 +101,6 @@ t_ctx	*parse(int argc, char **argv)
 	ctx->stack = create_stack(argc, argv);
 	ctx->sort = &adaptive_sort;
 	while (*++argv)
-	{
-		if (ft_strncmp(*argv, "--bench", 7) == 0)
-			ctx->bench = 1;
-		else
-			ctx->bench = 0;
-		if (ft_strncmp(*argv, "--simple", 8) == 0)
-			ctx->sort = &simple_sort;
-		else if (ft_strncmp(*argv, "--medium", 8) == 0)
-			ctx->sort = &medium_sort;
-		else if (ft_strncmp(*argv, "--complex", 9) == 0)
-			ctx->sort = &complex_sort;
-		else if (ft_strncmp(*argv, "--adaptive", 10) == 0)
-			ctx->sort = &adaptive_sort;
-	}
+		set_strategy(ctx, *argv);
 	return (ctx);
 }

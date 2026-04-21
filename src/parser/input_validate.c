@@ -33,7 +33,7 @@ static int	is_valid_flag(char *s)
 		return (1);
 	else if (ft_strncmp(s, "--adaptive", 10) == 0)
 		return (1);
-	else if (ft_strncmp(s, "--bench", 10) == 0)
+	else if (ft_strncmp(s, "--bench", 7) == 0)
 		return (1);
 	return (0);
 }

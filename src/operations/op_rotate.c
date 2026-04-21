@@ -1,6 +1,6 @@
-#include "../../inc/push_swap.h"
+#include "push_swap.h"
 
-void ra(t_stack **a, int print)
+void ra(t_stack **a, t_ctx *ctx, int print)
 {
     t_stack *first;
     t_stack *last;
@@ -16,11 +16,17 @@ void ra(t_stack **a, int print)
     last->next = first;
 
     if (print)
+    {
         write(1, "ra\n", 3);
-    move_counter(1);
+        if (ctx && ctx->bench)
+        {
+            ctx->benchmark.ra++;
+            ctx->benchmark.total_ops++;
+        }
+    }
 }
 
-void rb(t_stack **b, int print)
+void rb(t_stack **b, t_ctx *ctx, int print)
 {
     t_stack *first;
     t_stack *last;
@@ -36,11 +42,17 @@ void rb(t_stack **b, int print)
     last->next = first;
 
     if (print)
+    {
         write(1, "rb\n", 3);
-    move_counter(1);
+        if (ctx && ctx->bench)
+        {
+            ctx->benchmark.rb++;
+            ctx->benchmark.total_ops++;
+        }
+    }
 }
 
-void rr(t_stack **a, t_stack **b)
+void rr(t_stack **a, t_stack **b, t_ctx *ctx)
 {
     int can_ra;
     int can_rb;
@@ -51,7 +63,13 @@ void rr(t_stack **a, t_stack **b)
     if (!can_ra && !can_rb)
         return ;
 
-    ra(a, 0);
-    rb(b, 0);
+    ra(a, ctx, 0);
+    rb(b, ctx, 0);
+
     write(1, "rr\n", 3);
+    if (ctx && ctx->bench)
+    {
+        ctx->benchmark.rr++;
+        ctx->benchmark.total_ops++;
+    }
 }

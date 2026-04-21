@@ -12,25 +12,64 @@
 
 #include "push_swap.h"
 
+void print_stacks(t_stack *a, t_stack *b)
+{
+    printf("--- STACK A --- | --- STACK B ---\n");
+    while (a || b)
+    {
+        if (a)
+        {
+            printf("%15d | ", a->value);
+            a = a->next;
+        }
+        else
+            printf("                | ");
+        if (b)
+        {
+            printf("%d\n", b->value);
+            b = b->next;
+        }
+        else
+            printf("\n");
+    }
+    printf("----------------------------------\n");
+}
+
 int	main(int argc, char **argv)
 {
-	(void)argc;
-	(void)argv;
-	t_stack *stack;
+	t_ctx *ctx;
 	t_stack *stack_b;
 
-	stack = malloc(sizeof(t_stack));
-	if (!stack)
-		return (1);
 	stack_b = NULL;
+	
+	if (argc < 2)
+		return (1);
 
-	stack_push(&stack, 13);
-	stack_push(&stack, 53);
-	stack_push(&stack, 7);
-	stack_push(&stack, 2);
-	stack_push(&stack, 22);
+	if (!is_input_valid(argc, argv))
+	{
+		write(1, "error\n", 6);
+		return (1);
+	}
 
-	complex_sort(&stack, &stack_b);
+	ctx = parse(argc, argv);
 
+	print_stacks(ctx->stack, stack_b);
+
+	if (ctx->bench)
+		ctx->benchmark.disorder = calculate_disorder(ctx->stack);
+
+	if (ctx->sort)
+		ctx->sort(&(ctx->stack), &stack_b, ctx);
+
+	print_stacks(ctx->stack, stack_b);
+		
+	if (ctx->bench)
+		print_benchmark(ctx);
+
+	stack_clear(&ctx->stack);
+	free(ctx);
 	return (0);
 }
+
+//  ./push_swap --complex 1 5 2 4 3
+//  ./push_swap --bench --complex 3 1 2
