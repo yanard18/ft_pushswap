@@ -1,9 +1,6 @@
 ## TODO
 - [ ] benchmark.c --> replace printf() with ft_printf()
-- [ ] initializing with ctx puts '0' bottom of the stack by itself 
 - [ ] parser identifies the input flags and pushes them top of the stack as '0'
-
-> **Note:** only works if there's a flag since we don't have a proper adaptive strategy yet
 
 ```mermaid
 graph TD
