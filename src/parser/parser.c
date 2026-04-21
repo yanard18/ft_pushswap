@@ -87,7 +87,7 @@ static void	set_strategy(t_ctx *ctx, char *argv)
 	else if (ft_strncmp(argv, "--adaptive", 10) == 0)
 	{
 		ctx->sort = &adaptive_sort;
-		// set_adaptive_strategy(ctx, calculate_disorder(ctx->stack));
+		ctx->benchmark.strategy = "Adaptive / ?";
 	}
 }
 
