@@ -43,12 +43,12 @@ int	main(int argc, char **argv)
 	stack_b = NULL;
 	
 	if (argc < 2)
-		return (1);
+		return (-1);
 
 	if (!is_input_valid(argc, argv))
 	{
-		write(1, "error\n", 6);
-		return (1);
+		ft_putchar_fd("Error\n", 2);
+		return (-1);
 	}
 
 	ctx = parse(argc, argv);
