@@ -75,7 +75,7 @@ void sb(t_stack **b, t_ctx *ctx, int print)
     (*b)->next->value = tmp;
 
 	tmp = (*b)->normalized_value;
-	(*b)->normalized_value = (*b)->next->normalized_value;
+    (*b)->normalized_value = (*b)->next->normalized_value;
     (*b)->next->normalized_value = tmp;
 
     if (print)

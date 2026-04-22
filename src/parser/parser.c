@@ -12,21 +12,6 @@
 
 #include "push_swap.h"
 
-static int	get_nbr_amount_in_str(char *s)
-{
-	int		argc;
-	char	**argv;
-
-	argv = ft_split(s, ' ');
-	if (!argv)
-		return (0);
-	argc = 0;
-	while (argv[argc])
-		argc++;
-	free_argv(argv);
-	return (argc);
-}
-
 static void    push_atoi(t_stack **stack, char *s)
 {
     char    **argv;
@@ -49,26 +34,24 @@ static void    push_atoi(t_stack **stack, char *s)
 static t_stack	*create_stack(int argc, char **argv)
 {
 	t_stack	*stack;
-	int		i;
-	int		size;
 
 	stack = NULL;
-	size = 0;
-	i = 0;
-	while (argv[++i])
-		if (ft_isdigit(argv[i][0]) || argv[i][0] == '-' || argv[i][0] == '+')
-			size += get_nbr_amount_in_str(argv[i]);
-	while (--argc > 0)
-		push_atoi(&stack, argv[argc]);
+	while (argc-- > 1)
+		if (ft_isdigit(argv[argc][0])
+			|| (argv[argc][1] && argv[argc][0] == '-' && ft_isdigit(argv[argc][1]))
+			|| (argv[argc][1] && argv[argc][0] == '+' && ft_isdigit(argv[argc][1])))
+			push_atoi(&stack, argv[argc]);
 	return (stack);
 }
 
 static void	set_strategy(t_ctx *ctx, char *argv)
 {
+	/*
 	if (ft_strncmp(argv, "--bench", 7) == 0)
 		ctx->bench = 1;
-	// else
-	// 	ctx->bench = 0;
+	else
+	ctx->bench = 0;
+	*/
 	if (ft_strncmp(argv, "--simple", 8) == 0)
 	{
 		ctx->sort = &simple_sort;

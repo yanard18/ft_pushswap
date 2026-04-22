@@ -153,7 +153,6 @@ int	test_input_parse()
 		TEST(n3, -3, TEXT("for 3rd pop() expected: -3 but was: %d", n3));
 	}
 
-	/* THIS CASE MUST BE TESTED
 	{
 		t_ctx *ctx = __parse("./push_swap 999 --simple --bench", ' ');
 		int n = stack_pop(&ctx->stack);
@@ -161,7 +160,6 @@ int	test_input_parse()
 		free(ctx);
 		TEST(n, 999, TEXT("given --bench broked stack values. pop() exp: 999 but was: %d", n));
 	}
-	*/
 
 	{
 		t_ctx *ctx = __parse("./push_swap 999 --simple", ' ');
