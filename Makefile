@@ -30,7 +30,7 @@ endif
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) $(FT_LIB)
 	$(CC) $(CFLAGS) $(OBJS) $(FT_LIB) -o $(NAME)
 
 lib: $(LIB_NAME)
@@ -53,4 +53,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re FORCE
