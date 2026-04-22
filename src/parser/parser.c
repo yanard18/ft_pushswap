@@ -91,6 +91,24 @@ static void	set_strategy(t_ctx *ctx, char *argv)
 	}
 }
 
+static int	has_duplicate(t_stack *stack)
+{
+	t_stack	*iter_stack;
+
+	while (stack)
+	{
+		iter_stack = stack->next;
+		while (iter_stack)
+		{
+			if (iter_stack->value == stack->value)
+				return (1);
+			iter_stack = iter_stack->next;
+		}
+		stack = stack->next;
+	}
+	return (0);
+}
+
 t_ctx	*parse(int argc, char **argv)
 {
 	t_ctx	*ctx;
@@ -99,6 +117,8 @@ t_ctx	*parse(int argc, char **argv)
 	if (!ctx)
 		return (NULL);
 	ctx->stack = create_stack(argc, argv);
+	if (ctx->stack == NULL || has_duplicate(ctx->stack))
+		return (stack_clear(&ctx->stack), free(ctx), NULL);
 	ctx->sort = &adaptive_sort;
 	while (*++argv)
 		set_strategy(ctx, *argv);

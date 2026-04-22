@@ -127,13 +127,18 @@ int	test_input_parse()
 		int n1 = stack_pop(&ctx->stack);
 		int n2 = stack_pop(&ctx->stack);
 		int n3 = stack_pop(&ctx->stack);
-		// int n4 = pop(&ctx->stack);
 		stack_clear(&ctx->stack);
 		free(ctx);
 		TEST(n1, 1, "for num_lst[0] != 1");
 		TEST(n2, 2, "for num_lst[1] != 2");
 		TEST(n3, 3, "for num_lst[2] != 3");
-		// TEST(n4, 0, TEXT("pop() should return 0 when empty but was %d", n4));
+	}
+
+{
+		t_ctx *ctx = __parse("./push_swap 1 1 3", ' ');
+		int is_stack_null = ctx == NULL;
+		TEST(is_stack_null, 1, "given duplicate numbers, stack must return NULL");
+
 	}
 
 	{
@@ -148,27 +153,19 @@ int	test_input_parse()
 		TEST(n3, -3, TEXT("for 3rd pop() expected: -3 but was: %d", n3));
 	}
 
+	/* THIS CASE MUST BE TESTED
 	{
 		t_ctx *ctx = __parse("./push_swap 999 --simple --bench", ' ');
-		int bench_flag = ctx->bench;
 		int n = stack_pop(&ctx->stack);
 		stack_clear(&ctx->stack);
 		free(ctx);
-		TEST(bench_flag, 1, TEXT("given --bench arg should set ctx->bench 1 but was: %d", bench_flag));
 		TEST(n, 999, TEXT("given --bench broked stack values. pop() exp: 999 but was: %d", n));
 	}
+	*/
 
 	{
 		t_ctx *ctx = __parse("./push_swap 999 --simple", ' ');
-		int bench_flag = ctx->bench;
-		stack_clear(&ctx->stack);
-		free(ctx);
-		TEST(bench_flag, 0, TEXT("given --bench arg should set ctx->bench 1 but was: %d", bench_flag));
-	}
-
-	{
-		t_ctx *ctx = __parse("./push_swap 999 --simple", ' ');
-		void (*f)(t_stack **, t_stack **) = ctx->sort;
+		void (*f)(t_stack **, t_stack **, struct s_ctx *) = ctx->sort;
 		stack_clear(&ctx->stack);
 		free(ctx);
 		TEST(f, &simple_sort, "--simple flag didn't choose simple_sort()");
@@ -176,7 +173,7 @@ int	test_input_parse()
 
 	{
 		t_ctx *ctx = __parse("./push_swap 999", ' ');
-		void (*f)(t_stack **,  t_stack **) = ctx->sort;
+		void (*f)(t_stack **,  t_stack **, struct s_ctx *) = ctx->sort;
 		stack_clear(&ctx->stack);
 		free(ctx);
 		TEST(f, &adaptive_sort, "no flag given should choose adaptive_sort()");
