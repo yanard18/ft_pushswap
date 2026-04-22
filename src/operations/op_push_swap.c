@@ -48,6 +48,10 @@ void sa(t_stack **a, t_ctx *ctx, int print)
     (*a)->value = (*a)->next->value;
     (*a)->next->value = tmp;
 
+	tmp = (*a)->normalized_value;
+    (*a)->normalized_value = (*a)->next->normalized_value;
+    (*a)->next->normalized_value = tmp;
+
     if (print)
     {
         write(1, "sa\n", 3);
@@ -69,6 +73,10 @@ void sb(t_stack **b, t_ctx *ctx, int print)
     tmp = (*b)->value;
     (*b)->value = (*b)->next->value;
     (*b)->next->value = tmp;
+
+	tmp = (*b)->normalized_value;
+	(*b)->normalized_value = (*b)->next->normalized_value;
+    (*b)->next->normalized_value = tmp;
 
     if (print)
     {        
