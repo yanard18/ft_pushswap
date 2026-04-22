@@ -46,12 +46,11 @@ int	main(int argc, char **argv)
 		return (-1);
 
 	if (!is_input_valid(argc, argv))
-	{
-		ft_putstr_fd("Error\n", 2);
-		return (-1);
-	}
+		return (ft_putstr_fd("Error\n", 2), -1);
 
 	ctx = parse(argc, argv);
+	if (ctx == NULL)
+		return (ft_putstr_fd("Error\n", 2), -1);
 
 	print_stacks(ctx->stack, stack_b);
 

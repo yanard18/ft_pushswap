@@ -76,7 +76,7 @@ void rrr(t_stack **a, t_stack **b, t_ctx *ctx)
     write(1, "rrr\n", 4);
     if (ctx && ctx->bench)
     {
-        ctx->benchmark.rra++;
+        ctx->benchmark.rrr++;
         ctx->benchmark.total_ops++;
     }
 }
