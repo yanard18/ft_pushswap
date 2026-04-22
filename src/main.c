@@ -47,7 +47,7 @@ int	main(int argc, char **argv)
 
 	if (!is_input_valid(argc, argv))
 	{
-		ft_putchar_fd("Error\n", 2);
+		ft_putstr_fd("Error\n", 2);
 		return (-1);
 	}
 
