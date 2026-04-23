@@ -8,6 +8,21 @@ int test_medium_sort()
     ctx.sort = NULL;
     ctx.bench = 0;
 	
+    // Single node test
+    {
+        t_stack *stack_a = NULL;
+        t_stack *stack_b = NULL;
+        
+        stack_push(&stack_a, 42);
+        medium_sort(&stack_a, &stack_b, &ctx);
+        
+        int value = stack_pop(&stack_a);
+        stack_clear(&stack_a);
+        
+        TEST(value, 42, "Single node test failed: Value changed");
+        TEST(stack_b == NULL, 1, "Single node test failed: Stack B used");
+    }
+
     // Empty stack 
     {
         t_stack *stack_a = NULL;
