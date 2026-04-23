@@ -60,19 +60,11 @@ static int get_max_idx_position(t_stack *stack_b)
 	return (max_idx);
 }
 
-void	medium_sort(t_stack **stack_a, t_stack **stack_b, t_ctx *ctx)
+static void push_chunks_to_b(t_stack **stack_a, t_stack **stack_b, t_ctx *ctx, int chunk_size)
 {
-	int	size;
-	int	chunk_size;
-	int	max_idx;
-	int	pushed;
+	int pushed;
 
-	assign_idx(*stack_a);
-	
-	size = get_stack_size(*stack_a);
-	chunk_size = get_chunk_size(size);
 	pushed = 0;
-
 	while (*stack_a)
 	{
 		if ((*stack_a)->index <= pushed)
@@ -89,6 +81,13 @@ void	medium_sort(t_stack **stack_a, t_stack **stack_b, t_ctx *ctx)
 		else
 			ra(stack_a, ctx, 1);
 	}
+}
+
+static void push_chunks_to_a(t_stack **stack_a, t_stack **stack_b, t_ctx *ctx)
+{
+	int size; 
+	int max_idx;
+
 	while (*stack_b)
 	{
 		size = get_stack_size(*stack_b);
@@ -110,4 +109,18 @@ void	medium_sort(t_stack **stack_a, t_stack **stack_b, t_ctx *ctx)
 		}
 		pa(stack_a, stack_b, ctx);
 	}
+}
+
+void	medium_sort(t_stack **stack_a, t_stack **stack_b, t_ctx *ctx)
+{
+	int	size;
+	int	chunk_size;
+
+	assign_idx(*stack_a);
+	
+	size = get_stack_size(*stack_a);
+	chunk_size = get_chunk_size(size);
+
+	push_chunks_to_b(stack_a, stack_b, ctx, chunk_size);
+	push_chunks_to_a(stack_a, stack_b, ctx);
 }
