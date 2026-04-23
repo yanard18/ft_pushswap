@@ -8,6 +8,17 @@ int test_medium_sort()
     ctx.sort = NULL;
     ctx.bench = 0;
 	
+    // Empty stack 
+    {
+        t_stack *stack_a = NULL;
+        t_stack *stack_b = NULL;
+    
+        medium_sort(&stack_a, &stack_b, &ctx);
+    
+        TEST(stack_a == NULL, 1, "Empty stack test failed: stack_a changed");
+        TEST(stack_b == NULL, 1, "Empty stack test failed: stack_b changed");
+    }
+
     // Already sorted
 	{
 		t_stack *stack_a = NULL;
