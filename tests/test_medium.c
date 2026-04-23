@@ -1,13 +1,26 @@
 #include "push_swap.h"
 #include "unit.h"
 
-int test_medium_sort()
+static int is_stack_sorted(t_stack *stack)
+{
+    if (!stack)
+        return (1);
+    while (stack->next)
+    {
+        if (stack->value > stack->next->value)
+            return (0);
+        stack = stack->next;
+    }
+    return (1);
+}
+
+int test_medium_cases()
 {
     t_ctx ctx;
     ctx.stack = NULL;
     ctx.sort = NULL;
     ctx.bench = 0;
-	
+
     // Single node test
     {
         t_stack *stack_a = NULL;
@@ -150,4 +163,32 @@ int test_medium_sort()
 	return (1);
 }
 
+int test_medium_sort()
+{
+    t_ctx ctx;
+    ctx.stack = NULL;
+    ctx.sort = NULL;
+    ctx.bench = 0;
+
+    t_stack *stack_a = NULL;
+    t_stack *stack_b = NULL;
+    int i;
+
+    i = 0;
+    while (i < 100)
+    {
+        stack_push(&stack_a, i);
+        i++;
+    }
+
+    medium_sort(&stack_a, &stack_b, &ctx);
+
+    int is_sorted = is_stack_sorted(stack_a);
+    TEST(is_sorted, 1, "Medium sort failed: 100 elements are not perfectly sorted");
+
+    return (1);
+}
+
+
+REGISTER_TEST(test_medium_cases);
 REGISTER_TEST(test_medium_sort);
