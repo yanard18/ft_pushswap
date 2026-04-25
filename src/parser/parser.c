@@ -46,12 +46,11 @@ static t_stack	*create_stack(int argc, char **argv)
 
 static void	set_strategy(t_ctx *ctx, char *argv)
 {
-	/*
+	
 	if (ft_strncmp(argv, "--bench", 7) == 0)
 		ctx->bench = 1;
-	else
-	ctx->bench = 0;
-	*/
+	// else
+	// ctx->bench = 0;
 	if (ft_strncmp(argv, "--simple", 8) == 0)
 	{
 		ctx->sort = &simple_sort;
