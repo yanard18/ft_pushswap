@@ -116,11 +116,20 @@ void	medium_sort(t_stack **stack_a, t_stack **stack_b, t_ctx *ctx)
 	int	size;
 	int	chunk_size;
 
-	assign_idx(*stack_a);
-	
+	if (!stack_a || !*stack_a)
+		return ;
 	size = get_stack_size(*stack_a);
-	chunk_size = get_chunk_size(size);
-
-	push_chunks_to_b(stack_a, stack_b, ctx, chunk_size);
-	push_chunks_to_a(stack_a, stack_b, ctx);
+	if (size == 2)
+		sort_two(stack_a, ctx);
+	else if (size == 3)
+		sort_three(stack_a, ctx);
+	else if (size <= 5)
+		sort_five(stack_a, stack_b, ctx);
+	else
+	{
+		assign_idx(*stack_a);
+		chunk_size = get_chunk_size(size);
+		push_chunks_to_b(stack_a, stack_b, ctx, chunk_size);
+		push_chunks_to_a(stack_a, stack_b, ctx);
+	}
 }
