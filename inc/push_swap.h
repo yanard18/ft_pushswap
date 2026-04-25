@@ -87,4 +87,8 @@ void	adaptive_sort(t_stack **stack_a, t_stack **stack_b, t_ctx *ctx);
 void print_benchmark(t_ctx *ctx);
 void set_adaptive_string(t_ctx *ctx, float disorder);
 
+void sort_three(t_stack **stack_a, t_ctx *ctx);
+void sort_two(t_stack **stack_a, t_ctx *ctx);
+void sort_five(t_stack **stack_a, t_stack **stack_b, t_ctx *ctx);
+
 #endif
