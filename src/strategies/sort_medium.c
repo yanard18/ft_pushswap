@@ -119,12 +119,8 @@ void	medium_sort(t_stack **stack_a, t_stack **stack_b, t_ctx *ctx)
 	if (!stack_a || !*stack_a)
 		return ;
 	size = get_stack_size(*stack_a);
-	if (size == 2)
-		sort_two(stack_a, ctx);
-	else if (size == 3)
-		sort_three(stack_a, ctx);
-	else if (size <= 5)
-		sort_five(stack_a, stack_b, ctx);
+    if(handle_small_stacks(stack_a, stack_b, ctx))
+        return ;
 	else
 	{
 		assign_idx(*stack_a);

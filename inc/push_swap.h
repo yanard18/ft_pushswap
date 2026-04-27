@@ -6,7 +6,7 @@
 /*   By: ekablan <ekablan@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/04 21:09:52 by ekablan           #+#    #+#             */
-/*   Updated: 2026/04/27 16:20:56 by dyanar           ###   ########.fr       */
+/*   Updated: 2026/04/27 18:16:07 by ekablan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,6 @@ void set_adaptive_string(t_ctx *ctx, float disorder);
 void sort_three(t_stack **stack_a, t_ctx *ctx);
 void sort_two(t_stack **stack_a, t_ctx *ctx);
 void sort_five(t_stack **stack_a, t_stack **stack_b, t_ctx *ctx);
+int handle_small_stacks(t_stack **stack_a, t_stack **stack_b, t_ctx *ctx);
 
 #endif

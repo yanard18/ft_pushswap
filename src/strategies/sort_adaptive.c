@@ -15,12 +15,13 @@ void	adaptive_sort(t_stack **stack_a, t_stack **stack_b, t_ctx *ctx)
 	float 	disorder;
 
 	if (!stack_a || !*stack_a)
-		disorder = ctx->benchmark.disorder;
-	else
-		disorder = calculate_disorder(*stack_a);
-
+		return ;
+		
+	disorder = calculate_disorder(*stack_a);
 	set_adaptive_string(ctx, disorder);
 
+	if (handle_small_stacks(stack_a, stack_b, ctx))
+		return ;
 	if (disorder == 0.0)
 		return ;
 	else if (disorder < 0.2)
