@@ -1,75 +1,78 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   op_rotate.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dyanar <dyanar@student.42istanbul.com.tr>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/27 19:00:10 by dyanar            #+#    #+#             */
+/*   Updated: 2026/04/27 19:01:06 by dyanar           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-void ra(t_stack **a, t_ctx *ctx, int print)
+void	ra(t_stack **a, t_ctx *ctx, int print)
 {
-    t_stack *first;
-    t_stack *last;
+	t_stack	*first;
+	t_stack	*last;
 
-    if (!*a || !(*a)->next)
-        return ;
-
-    first = *a;
-    last = stack_last(*a);
-
-    *a = first->next;
-    first->next = NULL;
-    last->next = first;
-
-    if (print)
-    {
-        write(1, "ra\n", 3);
-        if (ctx && ctx->bench)
-        {
-            ctx->benchmark.ra++;
-            ctx->benchmark.total_ops++;
-        }
-    }
+	if (!*a || !(*a)->next)
+		return ;
+	first = *a;
+	last = stack_last(*a);
+	*a = first->next;
+	first->next = NULL;
+	last->next = first;
+	if (print)
+	{
+		write(1, "ra\n", 3);
+		if (ctx && ctx->bench)
+		{
+			ctx->benchmark.ra++;
+			ctx->benchmark.total_ops++;
+		}
+	}
 }
 
-void rb(t_stack **b, t_ctx *ctx, int print)
+void	rb(t_stack **b, t_ctx *ctx, int print)
 {
-    t_stack *first;
-    t_stack *last;
+	t_stack	*first;
+	t_stack	*last;
 
-    if (!*b || !(*b)->next)
-        return ;
-
-    first = *b;
-    last = stack_last(*b);
-
-    *b = first->next;
-    first->next = NULL;
-    last->next = first;
-
-    if (print)
-    {
-        write(1, "rb\n", 3);
-        if (ctx && ctx->bench)
-        {
-            ctx->benchmark.rb++;
-            ctx->benchmark.total_ops++;
-        }
-    }
+	if (!*b || !(*b)->next)
+		return ;
+	first = *b;
+	last = stack_last(*b);
+	*b = first->next;
+	first->next = NULL;
+	last->next = first;
+	if (print)
+	{
+		write(1, "rb\n", 3);
+		if (ctx && ctx->bench)
+		{
+			ctx->benchmark.rb++;
+			ctx->benchmark.total_ops++;
+		}
+	}
 }
 
-void rr(t_stack **a, t_stack **b, t_ctx *ctx)
+void	rr(t_stack **a, t_stack **b, t_ctx *ctx)
 {
-    int can_ra;
-    int can_rb;
+	int	can_ra;
+	int	can_rb;
 
-    can_ra = (a && *a && (*a)->next);
-    can_rb = (b && *b && (*b)->next);
-
-    if (!can_ra && !can_rb)
-        return ;
-
-    ra(a, ctx, 0);
-    rb(b, ctx, 0);
-
-    write(1, "rr\n", 3);
-    if (ctx && ctx->bench)
-    {
-        ctx->benchmark.rr++;
-        ctx->benchmark.total_ops++;
-    }
+	can_ra = (a && *a && (*a)->next);
+	can_rb = (b && *b && (*b)->next);
+	if (!can_ra && !can_rb)
+		return ;
+	ra(a, ctx, 0);
+	rb(b, ctx, 0);
+	write(1, "rr\n", 3);
+	if (ctx && ctx->bench)
+	{
+		ctx->benchmark.rr++;
+		ctx->benchmark.total_ops++;
+	}
 }
