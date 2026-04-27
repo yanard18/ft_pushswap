@@ -74,6 +74,8 @@ static int	is_nbr(char *s)
 	int		i;
 
 	argv = ft_split(s, ' ');
+	if (!argv)
+	  return (0);
 	if (*argv == NULL)
 		return (0);
 	tmp_argv = argv;
