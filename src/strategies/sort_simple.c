@@ -1,35 +1,6 @@
 #include "push_swap.h"
 
 
-static void sort_three(t_stack **stack_a, t_ctx *ctx)
-{
-    int top;
-    int middle;
-    int bottom;
-
-    if (!(*stack_a) || !(*stack_a)->next || !(*stack_a)->next->next)
-        return ;
-    top = (*stack_a)->value;
-    middle = (*stack_a)->next->value;
-    bottom = (*stack_a)->next->next->value;
-    
-    if (top > middle && top > bottom)
-        ra(stack_a, ctx, 1);
-    else if (top < middle && middle > bottom)
-        rra(stack_a, ctx, 1);
-        
-    if ((*stack_a)->value > (*stack_a)->next->value)
-        sa(stack_a, ctx, 1);
-}
-
-static void sort_two(t_stack **stack_a, t_ctx *ctx)
-{
-    if (!(*stack_a) || !(*stack_a)->next)
-        return ;
-    if ((*stack_a)->value > (*stack_a)->next->value)
-        sa(stack_a, ctx, 1);
-}
-
 void simple_sort(t_stack **stack_a, t_stack **stack_b, t_ctx *ctx)
 {
     int min_idx;
