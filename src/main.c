@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyanar <dyanar@student.42istanbul.com.tr>  +#+  +:+       +#+        */
+/*   By: ekablan <ekablan@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/11 21:38:07 by dyanar            #+#    #+#             */
-/*   Updated: 2026/04/14 18:15:33 by dyanar           ###   ########.fr       */
+/*   Updated: 2026/04/27 18:18:46 by ekablan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,12 @@ int	main(int argc, char **argv)
 	if (ctx == NULL)
 		return (ft_putstr_fd("Error\n", 2), 1);
 
-	print_stacks(ctx->stack, stack_b);
-
 	if (ctx->bench)
 		ctx->benchmark.disorder = calculate_disorder(ctx->stack);
 
 	if (ctx->sort)
 		ctx->sort(&(ctx->stack), &stack_b, ctx);
 
-	print_stacks(ctx->stack, stack_b);
-		
 	if (ctx->bench)
 		print_benchmark(ctx);
 

@@ -3,27 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   sort_complex.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyanar <dyanar@student.42istanbul.com.tr>  +#+  +:+       +#+        */
+/*   By: ekablan <ekablan@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/11 22:15:20 by dyanar            #+#    #+#             */
-/*   Updated: 2026/04/11 22:15:21 by dyanar           ###   ########.fr       */
+/*   Updated: 2026/04/27 18:17:29 by ekablan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static void print_stack(t_stack *stack)
-{
-	t_stack *next;
-
-	next = stack;
-	while (next)
-	{
-		printf("%d, ", next->value);
-		next = next->next;
-	}
-	printf("\n");
-}
 
 static int	get_max_normalized_val(t_stack *stack)
 {
@@ -71,27 +58,32 @@ void complex_sort(t_stack **stack_a, t_stack **stack_b, t_ctx *ctx)
     int size;
     int max_bits;
 
-	printf("original stack: ");
-	print_stack(*stack_a);
-    stack_normalize(*stack_a);
+    if (!stack_a || !*stack_a)
+        return ;
+
     size = stack_size(*stack_a);
-    max_bits = get_bits_count(get_max_normalized_val(*stack_a));
-    i = 0;
-    while (i < max_bits)
+
+    if (handle_small_stacks(stack_a, stack_b, ctx))
+        return ;
+    else
     {
-        j = 0;
-        while (j < size)
+        stack_normalize(*stack_a);
+        max_bits = get_bits_count(get_max_normalized_val(*stack_a));
+        i = 0;
+        while (i < max_bits)
         {
-            if ((((*stack_a)->normalized_value >> i) & 1) == 0)
-                pb(stack_a, stack_b, ctx);
-            else
-                ra(stack_a, ctx, 1);
-            j++;
+            j = 0;
+            while (j < size)
+            {
+                if ((((*stack_a)->normalized_value >> i) & 1) == 0)
+                    pb(stack_a, stack_b, ctx);
+                else
+                    ra(stack_a, ctx, 1);
+                j++;
+            }
+            while (*stack_b != NULL)
+                pa(stack_a, stack_b, ctx);
+            i++;
         }
-        // Empty Stack B back into Stack A
-        while (*stack_b != NULL)
-            pa(stack_a, stack_b, ctx);
-        i++;
     }
-	print_stack(*stack_a);
 }

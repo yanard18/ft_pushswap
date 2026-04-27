@@ -1,5 +1,19 @@
 #include "push_swap.h"
 
+static int is_sorted(t_stack *stack)
+{
+    if (!stack)
+        return (1);
+    while (stack->next)
+    {
+        if (stack->value > stack->next->value)
+            return (0);
+            
+        stack = stack->next;
+    }
+    return (1);
+}
+
 void sort_three(t_stack **stack_a, t_ctx *ctx)
 {
     int top;
@@ -50,4 +64,26 @@ void sort_five(t_stack **stack_a, t_stack **stack_b, t_ctx *ctx)
     sort_three(stack_a, ctx);
     while (get_stack_size(*stack_b) > 0)
         pa(stack_a, stack_b, ctx);
+}
+
+int handle_small_stacks(t_stack **stack_a, t_stack **stack_b, t_ctx *ctx)
+{
+    int size;
+
+    if (!stack_a || !*stack_a)
+        return (1);
+    if (is_sorted(*stack_a))
+        return (1);
+    size = get_stack_size(*stack_a);
+    
+    if (size == 2)
+        sort_two(stack_a, ctx);
+    else if (size == 3)
+        sort_three(stack_a, ctx);
+    else if (size <= 5)
+        sort_five(stack_a, stack_b, ctx);
+    else
+        return (0);
+        
+    return (1);
 }
