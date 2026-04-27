@@ -184,6 +184,9 @@ int test_medium_sort()
     medium_sort(&stack_a, &stack_b, &ctx);
 
     int is_sorted = is_stack_sorted(stack_a);
+
+	stack_clear(&stack_a);
+	stack_clear(&stack_b);
     TEST(is_sorted, 1, "Medium sort failed: 100 elements are not perfectly sorted");
 
     return (1);
