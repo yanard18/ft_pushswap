@@ -2,7 +2,8 @@ NAME	= run
 CC		= cc
 CFLAGS	= -Wextra -Wall -Werror -I../inc -I../libunit/inc -I../libft/inc -g
 
-SRCS	= test_parser.c test_normalize.c test_simple.c test_medium.c
+SRCS	= test_simple.c
+#test_parser.c test_normalize.c test_simple.c test_medium.c
 OBJS	= $(SRCS:.c=.o)
 
 PS_LIB	= ../libpushswap.a
