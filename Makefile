@@ -12,7 +12,7 @@ CORE_SRCS = $(addprefix $(SRC_DIR), parser/input_validate.c \
 		strategies/sort_complex.c \
 		strategies/sort_simple.c \
 		strategies/sort_medium.c \
-		stack.c \
+		stack.c stack2.c \
 		operations/op_push_swap.c \
 		operations/op_rotate.c \
 		operations/op_reverse_rotate.c \
