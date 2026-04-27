@@ -6,29 +6,29 @@
 /*   By: dyanar <dyanar@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 21:55:03 by dyanar            #+#    #+#             */
-/*   Updated: 2026/04/11 21:41:19 by dyanar           ###   ########.fr       */
+/*   Updated: 2026/04/27 19:04:35 by dyanar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void    push_atoi(t_stack **stack, char *s)
+static void	push_atoi(t_stack **stack, char *s)
 {
-    char    **argv;
-    int        argc;
+	char	**argv;
+	int		argc;
 
-    argv = ft_split(s, ' ');
-    if (!argv)
-        return ;
-    argc = 0;
-    while (argv[argc])
-        argc++;
-    while (--argc >= 0)
-    {
-        stack_push(stack, ft_atoi(argv[argc])); 
-        free(argv[argc]);
-    }
-    free(argv);
+	argv = ft_split(s, ' ');
+	if (!argv)
+		return ;
+	argc = 0;
+	while (argv[argc])
+		argc++;
+	while (--argc >= 0)
+	{
+		stack_push(stack, ft_atoi(argv[argc]));
+		free(argv[argc]);
+	}
+	free(argv);
 }
 
 static t_stack	*create_stack(int argc, char **argv)
@@ -38,19 +38,18 @@ static t_stack	*create_stack(int argc, char **argv)
 	stack = NULL;
 	while (argc-- > 1)
 		if (ft_isdigit(argv[argc][0])
-			|| (argv[argc][1] && argv[argc][0] == '-' && ft_isdigit(argv[argc][1]))
-			|| (argv[argc][1] && argv[argc][0] == '+' && ft_isdigit(argv[argc][1])))
+			|| (argv[argc][1] && argv[argc][0] == '-'
+				&& ft_isdigit(argv[argc][1]))
+			|| (argv[argc][1] && argv[argc][0] == '+'
+				&& ft_isdigit(argv[argc][1])))
 			push_atoi(&stack, argv[argc]);
 	return (stack);
 }
 
 static void	set_strategy(t_ctx *ctx, char *argv)
 {
-	
 	if (ft_strncmp(argv, "--bench", 7) == 0)
 		ctx->bench = 1;
-	// else
-	// ctx->bench = 0;
 	if (ft_strncmp(argv, "--simple", 8) == 0)
 	{
 		ctx->sort = &simple_sort;

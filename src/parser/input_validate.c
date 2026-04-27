@@ -6,7 +6,7 @@
 /*   By: dyanar <dyanar@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 21:59:46 by dyanar            #+#    #+#             */
-/*   Updated: 2026/04/06 21:59:50 by dyanar           ###   ########.fr       */
+/*   Updated: 2026/04/27 19:02:27 by dyanar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static int	is_nbr(char *s)
 
 	argv = ft_split(s, ' ');
 	if (!argv)
-	  return (0);
+		return (0);
 	if (*argv == NULL)
 		return (0);
 	tmp_argv = argv;
