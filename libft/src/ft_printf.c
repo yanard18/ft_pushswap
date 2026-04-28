@@ -16,7 +16,7 @@ static	t_token	*init_token_buf(void)
 {
 	t_token	*buf;
 
-	buf = (t_token *)malloc(sizeof(t_token) * 19);
+	buf = (t_token *)malloc(sizeof(t_token) * 18);
 	if (!buf)
 		return (NULL);
 	buf[7] = (t_token){'s', "c", 10, convert_c};
@@ -27,8 +27,7 @@ static	t_token	*init_token_buf(void)
 	buf[12] = (t_token){'s', "u", 10, convert_u};
 	buf[13] = (t_token){'s', "x", 10, convert_x};
 	buf[14] = (t_token){'s', "X", 10, convert_bigx};
-	buf[15] = (t_token){'s', "f", 10, convert_f};
-	buf[16] = (t_token){'s', "%", 10, NULL};
+	buf[15] = (t_token){'s', "%", 10, NULL};
 	buf[6] = (t_token){'.', NULL, 20, apply_precision};
 	buf[0] = (t_token){'f', "#", 30, convert_hash};
 	buf[4] = (t_token){'f', "+", 30, convert_plus};
@@ -36,8 +35,8 @@ static	t_token	*init_token_buf(void)
 	buf[5] = (t_token){'w', NULL, 40, convert_width};
 	buf[1] = (t_token){'f', "-", 0, NULL};
 	buf[2] = (t_token){'f', "0", 0, NULL};
-	buf[17] = (t_token){'+', NULL, 0, NULL};
-	buf[18] = (t_token){'0', NULL, 0, NULL};
+	buf[16] = (t_token){'+', NULL, 0, NULL};
+	buf[17] = (t_token){'0', NULL, 0, NULL};
 	return (buf);
 }
 
