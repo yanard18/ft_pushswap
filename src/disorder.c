@@ -6,7 +6,7 @@
 /*   By: dyanar <dyanar@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/27 18:45:14 by dyanar            #+#    #+#             */
-/*   Updated: 2026/04/27 18:45:33 by dyanar           ###   ########.fr       */
+/*   Updated: 2026/04/28 20:53:13 by dyanar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,5 @@ float	calculate_disorder(t_stack *stack_a)
 		}
 		current = current->next;
 	}
-	return (mistakes / total_pairs);
+	return (mistakes / total_pairs * 100.0f);
 }

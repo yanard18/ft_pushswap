@@ -5,7 +5,7 @@ CFLAGS      = -Wextra -Wall -Werror -I./inc
 DIR         = src/
 SRCS        = $(addprefix $(DIR), ft_printf.c token.c token_helper.c \
               token_utils.c token_validate.c token_sort.c str_utils.c \
-              convert_base.c convert_flags.c convert_padding.c)
+              convert_base.c convert_flags.c convert_padding.c convert_float.c)
 SRCS 		+= $(addprefix $(DIR), ft_isalpha.c \
 				ft_isdigit.c \
 				ft_isalnum.c \
