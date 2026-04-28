@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyanar <dyanar@student.42istanbul.com.tr>  +#+  +:+       +#+        */
+/*   By: ekablan <ekablan@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 20:23:56 by dyanar            #+#    #+#             */
-/*   Updated: 2026/04/01 21:59:41 by dyanar           ###   ########.fr       */
+/*   Updated: 2026/04/28 19:52:40 by ekablan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ static int	print_and_free_chunk(char *s)
 	while (i < len)
 	{
 		if (s[i] == '\1')
-			write(1, "\0", 1);
+			write(2, "\0", 1);
 		else
-			write(1, &s[i], 1);
+			write(2, &s[i], 1);
 		i++;
 	}
 	free(s);
@@ -71,7 +71,7 @@ static int	process_format(const char **format, va_list args, t_token *buf)
 		len += print_and_free_chunk(read_token(format, args, buf));
 	else
 	{
-		len += write(1, *format, 1);
+		len += write(2, *format, 1);
 		(*format)++;
 	}
 	return (len);

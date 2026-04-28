@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   benchmark.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyanar <dyanar@student.42istanbul.com.tr>  +#+  +:+       +#+        */
+/*   By: ekablan <ekablan@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/27 18:45:56 by dyanar            #+#    #+#             */
-/*   Updated: 2026/04/28 20:44:47 by dyanar           ###   ########.fr       */
+/*   Updated: 2026/04/28 20:54:44 by dyanar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,14 @@ void	print_benchmark(t_ctx *ctx)
 {
 	if (!ctx || ctx->bench == 0)
 		return ;
-	printf("[bench] disorder: %.2f%%\n", ctx->benchmark.disorder);
-	printf("[bench] strategy: %s\n", ctx->benchmark.strategy);
-	printf("[bench] total_ops: %d\n", ctx->benchmark.total_ops);
-	printf("[bench] sa: %d sb: %d ss: %d pa: %d pb: %d\n",
+		
+	ft_printf("[bench] disorder: %.2f%%\n", ctx->benchmark.disorder);
+	ft_printf("[bench] strategy: %s\n", ctx->benchmark.strategy);
+	ft_printf("[bench] total_ops: %d\n", ctx->benchmark.total_ops);
+	ft_printf("[bench] sa: %d sb: %d ss: %d pa: %d pb: %d\n",
 		ctx->benchmark.sa, ctx->benchmark.sb, ctx->benchmark.ss,
 		ctx->benchmark.pa, ctx->benchmark.pb);
-	printf("[bench] ra: %d rb: %d rr: %d rra: %d rrb: %d rrr: %d\n",
+	ft_printf("[bench] ra: %d rb: %d rr: %d rra: %d rrb: %d rrr: %d\n",
 		ctx->benchmark.ra, ctx->benchmark.rb, ctx->benchmark.rr,
 		ctx->benchmark.rra, ctx->benchmark.rrb, ctx->benchmark.rrr);
 }
