@@ -6,7 +6,7 @@
 /*   By: ekablan <ekablan@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/04 21:09:52 by ekablan           #+#    #+#             */
-/*   Updated: 2026/04/27 18:16:07 by ekablan          ###   ########.fr       */
+/*   Updated: 2026/04/28 20:01:04 by ekablan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <unistd.h>
 #include <stdio.h>
 #include "libft.h"
+#include "ft_printf.h"
 
 typedef struct s_stack
 {
