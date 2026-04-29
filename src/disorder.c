@@ -36,5 +36,5 @@ float	calculate_disorder(t_stack *stack_a)
 		}
 		current = current->next;
 	}
-	return (mistakes / total_pairs * 100.0f);
+	return (mistakes / total_pairs);
 }

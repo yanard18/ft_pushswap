@@ -32,7 +32,7 @@ void	print_benchmark(t_ctx *ctx)
 	if (!ctx || ctx->bench == 0)
 		return ;
 	ft_printf("[bench] disorder: ");
-	print_float_two_decimals(ctx->benchmark.disorder);
+	print_float_two_decimals(ctx->benchmark.disorder * 100.0f);
 	ft_printf("%%\n");
 	ft_printf("[bench] strategy: %s\n", ctx->benchmark.strategy);
 	ft_printf("[bench] total_ops: %d\n", ctx->benchmark.total_ops);
