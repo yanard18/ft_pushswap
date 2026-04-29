@@ -53,8 +53,6 @@ typedef struct s_ctx
 	t_bench benchmark;
 }	t_ctx;
 
-int	ps_atoi(const char *str);
-
 void	stack_clear(t_stack **stack);
 void 	stack_push(t_stack **stack, int value);
 int 	stack_pop(t_stack **stack);

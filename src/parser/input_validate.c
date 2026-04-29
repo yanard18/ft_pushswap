@@ -77,18 +77,23 @@ static int	is_nbr(char *s)
 	if (!argv)
 		return (0);
 	if (*argv == NULL)
-		return (0);
+		return (free(argv), 0);
 	tmp_argv = argv;
 	while (*argv)
 	{
 		if (is_long(*argv))
 			return (free_argv(tmp_argv), 0);
-		i = -1;
-		if (**argv == '-' || **argv == '+')
+		i = 0;
+		if ((*argv)[i] == '-' || (*argv)[i] == '+')
 			i++;
-		while ((*argv)[++i])
+		if (!(*argv)[i])
+			return (free_argv(tmp_argv), 0);
+		while ((*argv)[i])
+		{
 			if (!ft_isdigit((*argv)[i]))
 				return (free_argv(tmp_argv), 0);
+			i++;
+		}
 		argv++;
 	}
 	free_argv(tmp_argv);

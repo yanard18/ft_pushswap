@@ -114,7 +114,7 @@ void	ss(t_stack **a, t_stack **b, t_ctx *ctx)
 	if (ctx && ctx->bench)
 	{
 		ctx->benchmark.ss++;
-		ctx->benchmark.total_ops += 2;
+		ctx->benchmark.total_ops++;
 	}
 	write(1, "ss\n", 3);
 }

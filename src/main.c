@@ -12,29 +12,6 @@
 
 #include "push_swap.h"
 
-void print_stacks(t_stack *a, t_stack *b)
-{
-    printf("--- STACK A --- | --- STACK B ---\n");
-    while (a || b)
-    {
-        if (a)
-        {
-            printf("%15d | ", a->value);
-            a = a->next;
-        }
-        else
-            printf("                | ");
-        if (b)
-        {
-            printf("%d\n", b->value);
-            b = b->next;
-        }
-        else
-            printf("\n");
-    }
-    printf("----------------------------------\n");
-}
-
 int	main(int argc, char **argv)
 {
 	t_ctx *ctx;
