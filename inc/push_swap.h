@@ -59,6 +59,7 @@ int 	stack_pop(t_stack **stack);
 int 	stack_pop_normalized(t_stack **stack);
 t_stack *stack_last(t_stack *stack);
 void	stack_normalize(t_stack *stack);
+int		is_sorted(t_stack *stack);
 
 void pb(t_stack **a, t_stack **b, t_ctx *ctx);
 void pa(t_stack **a, t_stack **b, t_ctx *ctx);

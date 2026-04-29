@@ -25,6 +25,7 @@ void	set_adaptive_string(t_ctx *ctx, float disorder)
 void	adaptive_sort(t_stack **stack_a, t_stack **stack_b, t_ctx *ctx)
 {
 	float	disorder;
+	int		size;
 
 	if (!stack_a || !*stack_a)
 		return ;
@@ -34,6 +35,9 @@ void	adaptive_sort(t_stack **stack_a, t_stack **stack_b, t_ctx *ctx)
 		return ;
 	if (disorder == 0.0)
 		return ;
+	size = get_stack_size(*stack_a);
+	if (size <= 100)
+		medium_sort(stack_a, stack_b, ctx);
 	else if (disorder < 0.2)
 		simple_sort(stack_a, stack_b, ctx);
 	else if (disorder >= 0.2 && disorder < 0.5)

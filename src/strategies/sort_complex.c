@@ -67,6 +67,8 @@ void	complex_sort(t_stack **stack_a, t_stack **stack_b, t_ctx *ctx)
 	i = -1;
 	while (++i < max_bits)
 	{
+		if (is_sorted(*stack_a))
+			break ;
 		j = -1;
 		while (++j < size)
 		{

@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-static int	is_sorted(t_stack *stack)
+int	is_sorted(t_stack *stack)
 {
 	if (!stack)
 		return (1);
