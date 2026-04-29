@@ -14,11 +14,11 @@
 
 void	set_adaptive_string(t_ctx *ctx, float disorder)
 {
-	if (disorder < 0.2)
+	if (disorder < 20.0)
 		ctx->benchmark.strategy = "Adaptive / O(n²)";
-	else if (disorder >= 0.2 && disorder < 0.5)
+	else if (disorder >= 20.0 && disorder < 50.0)
 		ctx->benchmark.strategy = "Adaptive / O(n√n)";
-	else if (disorder >= 0.5)
+	else if (disorder >= 50.0)
 		ctx->benchmark.strategy = "Adaptive / O(nlogn)";
 }
 
@@ -38,10 +38,10 @@ void	adaptive_sort(t_stack **stack_a, t_stack **stack_b, t_ctx *ctx)
 	size = get_stack_size(*stack_a);
 	if (size <= 100)
 		medium_sort(stack_a, stack_b, ctx);
-	else if (disorder < 0.2)
+	else if (disorder < 20.0)
 		simple_sort(stack_a, stack_b, ctx);
-	else if (disorder >= 0.2 && disorder < 0.5)
+	else if (disorder >= 20.0 && disorder < 50.0)
 		medium_sort(stack_a, stack_b, ctx);
-	else if (disorder >= 0.5)
+	else if (disorder >= 50.0)
 		complex_sort(stack_a, stack_b, ctx);
 }

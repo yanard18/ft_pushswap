@@ -21,9 +21,9 @@ void	print_float_two_decimals(float num)
 	integer_part = (int)num;
 	fractional_part = (int)((num - integer_part) * 100);
 	ft_putnbr_fd(integer_part, 2);
-	write(1, ".", 1);
+	write(2, ".", 1);
 	if (fractional_part < 10)
-		write(1, "0", 1);
+		write(2, "0", 1);
 	ft_putnbr_fd(fractional_part, 2);
 }
 
