@@ -45,19 +45,23 @@ We also added some custom flags to test things out and force specific algos:
 * `--adaptive`: default behavior, picks the algo based on disorder metric
 * `--bench`: prints a benchmark of the operations to stderr (super useful for testing)
 
-Tbh there is also a custom unit testing framework included in the source if you want to run the internal tests.
+A custom unit testing framework is also included in the source code to run internal tests.
 
 ## Explanation and justification of algorithms selected
 Instead of just brute forcing one algo, we calculate a **Disorder Metric** before starting. It basically counts the "mistakes" (inversions) divided by the total possible pairs. Depending on the score, we run:
 
 * **Simple Algorithm (Selection Sort) - O(n²)**:
-  Runs when disorder < 0.2. It just finds the minimum value, rotates it to the top, and pushes it to stack B. Kinda slow for big random lists but really efficient for almost-sorted arrays or tiny stacks (size <= 5).
+  Runs when disorder metric is disorder < 0.2. It just finds the minimum value, rotates it to the top, and pushes it to stack B. Kinda slow for big random lists but really efficient for almost-sorted arrays or tiny stacks (size <= 5).
 * **Medium Algorithm (Chunk Sort) - O(n√n)**:
-  Runs when 0.2 <= disorder < 0.5. It calculates a chunk size using a square root method, pushes numbers to stack B in chunks, and then finds the max value to push back to A. Great middle ground for partially sorted stuff.
+  Runs when disorder metric is 0.2 <= disorder < 0.5. It calculates a chunk size using a square root method, pushes numbers to stack B in chunks, and then finds the max value to push back to A. Great middle ground for partially sorted stuff.
 * **Complex Algorithm (Radix Sort) - O(n log n)**:
-  Runs when disorder >= 0.5. We normalize the stack values first (so negative numbers and large gaps don't break the logic), then sort them bit-by-bit using base-2 radix sort. It's the only way to handle completely random, massive inputs efficiently without timing out.
+  Runs when disorder metric is >= 0.5. We normalize the stack values first (so negative numbers and large gaps don't break the logic), then sort them bit-by-bit using base-2 radix sort. It's the only way to handle completely random, massive inputs efficiently without timing out.
 
 ## Resources
 * Standard 42 docs and the provided subject pdf
 * Wikipedia pages for Radix sort bitwise operations and Chunk sort logic
-* Used some AI tools to help generate the boilerplate for our custom unit testing framework and to troubleshoot a few bitwise shift bugs in the radix implementation.
+
+### AI Usage
+Generative AI tools were used during development for two tasks: 
+  1. Generating the standart boilerplate code for our custom unit testing framework.
+  2. Troubleshooting and debugging specific edge cases related to bitwise shifts in the Radix sort implementation.
