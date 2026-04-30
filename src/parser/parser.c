@@ -97,6 +97,7 @@ t_ctx	*parse(int argc, char **argv)
 	ctx = malloc(sizeof(t_ctx));
 	if (!ctx)
 		return (NULL);
+	ft_bzero(ctx, sizeof(t_ctx));
 	ctx->stack = create_stack(argc, argv);
 	if (ctx->stack == NULL || has_duplicate(ctx->stack))
 		return (stack_clear(&ctx->stack), free(ctx), NULL);
