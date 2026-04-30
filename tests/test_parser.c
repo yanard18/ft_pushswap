@@ -58,6 +58,10 @@ int	test_input_validation()
 	TEST(__is_input_valid("./push_swap --simple --bench", ' '),
 		 0, "given \"--simple 1 2 3\", expected 1, but returned 0");
 
+	TEST(__is_input_valid("./push_swap --simple --medium 1 2 3", ' '),
+			0, "given ./push_swawp -simple (two correct strategy), expected 0, but returned 1");
+
+
 	/*
 	TEST(__is_input_valid("./push_swap 3 2 3", ' '),
 		 0, "given ./push_swap 3 2 3 (duplicate numbers), expected 0, but returned 1");
@@ -98,11 +102,7 @@ int	test_input_validation()
 	TEST(__is_input_valid("./push_swap+1 2 3+4 5 6", '+'),
 		 1, "given '1 2 3' '4 5 6' expected 1, but returned 0");
 
-
-	/* === !WARNING: Check those tests and ensure they are correct === */
-	TEST(__is_input_valid("./push_swap --simple --medium 1 2 3", ' '),
-		 1, "given ./push_swawp -simple (two correct strategy), expected 0, but returned 1");
-
+	
 
 	return (1);
 }

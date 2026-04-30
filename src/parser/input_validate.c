@@ -6,7 +6,7 @@
 /*   By: dyanar <dyanar@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 21:59:46 by dyanar            #+#    #+#             */
-/*   Updated: 2026/04/27 19:02:27 by dyanar           ###   ########.fr       */
+/*   Updated: 2026/04/30 16:51:47 by dyanar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	is_valid_flag(char *s)
 	else if (ft_strncmp(s, "--adaptive", 10) == 0)
 		return (1);
 	else if (ft_strncmp(s, "--bench", 7) == 0)
-		return (1);
+		return (2);
 	return (0);
 }
 
@@ -104,11 +104,13 @@ int	is_input_valid(int argc, char **argv)
 {
 	int		has_num_seq;
 	int		num_seq_end;
+	int		flag_count;
 
 	if (argc <= 1 && !argv)
 		return (0);
 	has_num_seq = 0;
 	num_seq_end = 0;
+	flag_count = 0;
 	while (*++argv)
 	{
 		if (has_num_seq && !is_nbr(*argv))
@@ -117,7 +119,9 @@ int	is_input_valid(int argc, char **argv)
 			has_num_seq = 1;
 		else if (!is_valid_flag(*argv))
 			return (0);
-		if (num_seq_end && ft_isdigit(**argv))
+		else if (is_valid_flag(*argv) == 1)
+			flag_count++;
+		if (flag_count > 1 || (num_seq_end && ft_isdigit(**argv)))
 			return (0);
 	}
 	return (has_num_seq);
