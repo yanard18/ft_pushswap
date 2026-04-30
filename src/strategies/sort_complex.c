@@ -6,7 +6,7 @@
 /*   By: ekablan <ekablan@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/11 22:15:20 by dyanar            #+#    #+#             */
-/*   Updated: 2026/04/27 19:13:08 by dyanar           ###   ########.fr       */
+/*   Updated: 2026/04/30 17:09:47 by dyanar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,12 @@ void	complex_sort(t_stack **stack_a, t_stack **stack_b, t_ctx *ctx)
 
 	if (handle_small_stacks(stack_a, stack_b, ctx))
 		return ;
-	size = stack_size(*stack_a);
 	stack_normalize(*stack_a);
+	size = stack_size(*stack_a);
 	max_bits = get_bits_count(get_max_normalized_val(*stack_a));
 	i = -1;
-	while (++i < max_bits)
+	while (++i < max_bits && !is_sorted(*stack_a))
 	{
-		if (is_sorted(*stack_a))
-			break ;
 		j = -1;
 		while (++j < size)
 		{
