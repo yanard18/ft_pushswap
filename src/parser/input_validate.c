@@ -6,22 +6,11 @@
 /*   By: dyanar <dyanar@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 21:59:46 by dyanar            #+#    #+#             */
-/*   Updated: 2026/04/30 16:51:47 by dyanar           ###   ########.fr       */
+/*   Updated: 2026/04/30 16:56:24 by dyanar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <limits.h>
-
-void	free_argv(char **argv)
-{
-	int	i;
-
-	i = -1;
-	while (argv[++i])
-		free(argv[i]);
-	free(argv);
-}
 
 static int	is_valid_flag(char *s)
 {
@@ -67,11 +56,30 @@ static int	is_long(const char *nptr)
 	return (0);
 }
 
+static int	check_str_format(char *str)
+{
+	int	i;
+
+	if (is_long(str))
+		return (0);
+	i = 0;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	if (!str[i])
+		return (0);
+	while (str[i])
+	{
+		if (!ft_isdigit(str[i]))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 static int	is_nbr(char *s)
 {
 	char	**argv;
 	char	**tmp_argv;
-	int		i;
 
 	argv = ft_split(s, ' ');
 	if (!argv)
@@ -81,19 +89,8 @@ static int	is_nbr(char *s)
 	tmp_argv = argv;
 	while (*argv)
 	{
-		if (is_long(*argv))
+		if (!check_str_format(*argv))
 			return (free_argv(tmp_argv), 0);
-		i = 0;
-		if ((*argv)[i] == '-' || (*argv)[i] == '+')
-			i++;
-		if (!(*argv)[i])
-			return (free_argv(tmp_argv), 0);
-		while ((*argv)[i])
-		{
-			if (!ft_isdigit((*argv)[i]))
-				return (free_argv(tmp_argv), 0);
-			i++;
-		}
 		argv++;
 	}
 	free_argv(tmp_argv);
